@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TNKECGame'
-  s.version          = '1.0.0'
+  s.version          = '1.2.4'
   s.summary          = 'This is betting app for casino users'
  
   s.description      = 'User can bet on multiple option in casino like first digit, last digit and enjoy the quality time in casino'
@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/VipinTNK/TNKECGame.git', :tag => s.version.to_s }
  
   s.ios.deployment_target = '10.0'
- s.source_files = 'ECGame/**/*.{swift, plist}'
- s.resources = 'ECGame/**/*.{lproj,storyboard,xib,xcassets,json,png}'
+ s.source_files = 'ECGame/**/*.{swift}'
+ s.resources = 'ECGame/**/*.{storyboard,xib,xcassets,lproj,json,png}'
 
 s.framework = "UIKit"
 s.dependency 'MBProgressHUD'
