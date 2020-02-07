@@ -573,19 +573,22 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     
     //Change Language -
     func changeSelectedLanguage(selectedLanguageIndex: Int) {
+        //Added code for pods
+        var tempFlagImage : UIImage?
         if selectedLanguageIndex == 1 {
-            languageButton.setImage(UIImage(named: AssetName.usaFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.usaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .en
         } else if selectedLanguageIndex == 4 {
-            languageButton.setImage(UIImage(named: AssetName.thaiFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.thaiFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .th
         } else if selectedLanguageIndex == 3 {
-            languageButton.setImage(UIImage(named: AssetName.laoFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.laoFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .lao
         } else { //2 for china
-            languageButton.setImage(UIImage(named: AssetName.chinaFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.chinaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .zhHans
         }
+        languageButton.setImage(tempFlagImage, for: .normal)
         UserDefaults.init().set(true, forKey: UserDefaultsKey.isLanguageDefinded)
         self.updateTextOnLanguageChange()
     }
@@ -873,23 +876,26 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
     
     func updateFlagForSelectedLanguage() -> Void {
+        //Added code for pods
+        var tempFlagImage : UIImage?
         if UserDefaults.standard.bool(forKey: UserDefaultsKey.isLanguageDefinded) {
             if LanguageManager.shared.currentLanguage == .en {
-                languageButton.setImage(UIImage(named: AssetName.usaFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.usaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
             else if LanguageManager.shared.currentLanguage == .th {
-                languageButton.setImage(UIImage(named: AssetName.thaiFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.thaiFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
             else if LanguageManager.shared.currentLanguage == .lao {
-                languageButton.setImage(UIImage(named: AssetName.laoFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.laoFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
             else if LanguageManager.shared.currentLanguage == .zhHans {
-                languageButton.setImage(UIImage(named: AssetName.chinaFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.chinaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
         }
         else {
-            languageButton.setImage(UIImage(named: AssetName.usaFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.usaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
         }
+        languageButton.setImage(tempFlagImage, for: .normal)
     }
 }
 
