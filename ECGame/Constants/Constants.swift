@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
+// MARK: - Global Varialbles
+public struct appDelegate {
+    static var sharedInstance = GlobalVariables()
+}
+public struct GlobalVariables {
+    var selectedStockname = ""
+    var selectedBTUName = ""
+    var selectedTimeLoop = ""
+    var dropdownArray = [String]()
+}
 // MARK: - Identifier
 struct Identifier {
     static let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)

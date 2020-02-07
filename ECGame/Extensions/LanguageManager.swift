@@ -203,11 +203,13 @@ fileprivate extension Bundle {
     }
     
     @objc  private func customLocaLizedString(forKey key:String,value:String?,table:String?)->String{
-        if let bundle = Bundle.main.path(forResource: LanguageManager.shared.currentLanguage.rawValue, ofType: "lproj"),
+        //Added code for pods
+        let bundle1 = Bundle(for: LanguageManager.self)
+        if let bundle = bundle1.path(forResource: LanguageManager.shared.currentLanguage.rawValue, ofType: "lproj"),
             let langBundle = Bundle(path: bundle){
             return langBundle.customLocaLizedString(forKey: key, value: value, table: table)
         }else {
-            return Bundle.main.customLocaLizedString(forKey: key, value: value, table: table)
+            return bundle1.customLocaLizedString(forKey: key, value: value, table: table)
         }
     }
 }
@@ -221,10 +223,12 @@ public extension String {
     ///
     /// - returns: The localized string
     ///
-  func localiz(comment: String = "") -> String {
-        guard let bundle = Bundle.main.path(forResource: LanguageManager.shared.currentLanguage.rawValue, ofType: "lproj") else {
+    func localiz(comment: String = "") -> String {
+        //Added code for pods
+        let bundle1 = Bundle(for: LanguageManager.self)
+        guard let bundle = bundle1.path(forResource: LanguageManager.shared.currentLanguage.rawValue, ofType: "lproj") else {
             return NSLocalizedString(self, comment: comment)
-         }
+        }
         
         let langBundle = Bundle(path: bundle)
         return NSLocalizedString(self, tableName: nil, bundle: langBundle!, comment: comment)

@@ -58,7 +58,7 @@ class StockListViewController: UIViewController,UIGestureRecognizerDelegate {
             let tapLocation = recognizer.location(in: self.stockListTableView)
             if let tapIndexPath = self.stockListTableView.indexPathForRow(at: tapLocation) {
                 if (self.stockListTableView.cellForRow(at: tapIndexPath) as? StockListTableViewCell) != nil {
-                    let viewObj = appDelegate.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: RulesViewController.className()) as! RulesViewController
+                    let viewObj = self.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: RulesViewController.className()) as! RulesViewController
                     viewObj.requestURLString = self.stockListModel?.data?[tapIndexPath.row].stockReference ?? ""
                     viewObj.navTitleString = StockListScreen.referenceString.localiz().uppercased()
                     self.navigationController?.pushViewController(viewObj, animated: true)

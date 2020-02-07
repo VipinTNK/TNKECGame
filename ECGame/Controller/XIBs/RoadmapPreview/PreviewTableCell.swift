@@ -39,19 +39,21 @@ class PreviewTableCell: UITableViewCell, UICollectionViewDataSource, UICollectio
         
         numberCollectionView.delegate = self
         numberCollectionView.dataSource = self
-        numberCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: nil), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
+        //Added code for pods
+        let bundle = CommonMethods.initialiseBundle(ClassString: PreviewRoadmapCollectionCell.className())
+        numberCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: bundle), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
         
         bigSmallCollectionView.delegate = self
         bigSmallCollectionView.dataSource = self
-        bigSmallCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: nil), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
+        bigSmallCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: bundle), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
         
         evenOddCollectionView.delegate = self
         evenOddCollectionView.dataSource = self
-        evenOddCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: nil), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
+        evenOddCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: bundle), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
         
         upmidhighCollectionView.delegate = self
         upmidhighCollectionView.dataSource = self
-        upmidhighCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: nil), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
+        upmidhighCollectionView.register(UINib.init(nibName: PreviewRoadmapCollectionCell.className(), bundle: bundle), forCellWithReuseIdentifier: PreviewRoadmapCollectionCell.className())
         
         // Initialization code
     }

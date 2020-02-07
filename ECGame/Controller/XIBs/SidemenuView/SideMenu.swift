@@ -28,14 +28,18 @@ class SideMenu: UIView, UITableViewDelegate, UITableViewDataSource {
         menuTableView.delegate = self
         menuTableView.dataSource = self
         //Register XIB to the tableView
-        menuTableView.register(UINib(nibName: MenuTableViewCell.className(), bundle: nil), forCellReuseIdentifier: MenuTableViewCell.className())
+        //Added code for pods
+        let bundle = CommonMethods.initialiseBundle(ClassString: MenuTableViewCell.className())
+        menuTableView.register(UINib(nibName: MenuTableViewCell.className(), bundle: bundle), forCellReuseIdentifier: MenuTableViewCell.className())
         //Remove extra cells from tableView
         menuTableView.tableFooterView = UIView()
         readJsonFromBunble()
     }
   
     func readJsonFromBunble() {
-        if let path = Bundle.main.path(forResource: "SideMenuNew", ofType: "json") {
+        //Added code for pods
+        let bundle = Bundle(for: self.classForCoder)
+        if let path = bundle.path(forResource: "SideMenuNew", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let sideMenu = try! JSON(data: data)
@@ -67,10 +71,13 @@ extension SideMenu {
     
         let cell = menuTableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.className()) as? MenuTableViewCell
         if cell == nil {
-            menuTableView.register(UINib(nibName: MenuTableViewCell.className(), bundle: nil), forCellReuseIdentifier: MenuTableViewCell.className())
+            //Added code for pods
+            let bundle = CommonMethods.initialiseBundle(ClassString: MenuTableViewCell.className())
+            menuTableView.register(UINib(nibName: MenuTableViewCell.className(), bundle: bundle), forCellReuseIdentifier: MenuTableViewCell.className())
         }
          
-        cell?.menuImageView.image = UIImage(named: menuArray[indexPath.row]["imageName"].string!)
+        //Added code for pods
+        cell?.menuImageView.image = UIImage.init(named: menuArray[indexPath.row]["imageName"].string!, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
         cell?.menuLabel.text = menuArray[indexPath.row]["menuname"].string?.localiz()
         
         return cell!

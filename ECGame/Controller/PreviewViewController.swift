@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import DropDown
 import ObjectMapper
+import IQKeyboardManagerSwift
 
 class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -38,6 +39,10 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     var tableArray = [Any]()
     
     //MARK: - View Life -
+    override func loadView() {
+        super.loadView()
+        initialSetup()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadBasicView()
@@ -50,7 +55,9 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         self.setdefaultStock()
         previewTableView.delegate = self
         previewTableView.dataSource = self
-        previewTableView.register(UINib(nibName: PreviewTableCell.className(), bundle: nil), forCellReuseIdentifier: PreviewTableCell.className())
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: PreviewTableCell.className())
+        previewTableView.register(UINib(nibName: PreviewTableCell.className(), bundle: bundle), forCellReuseIdentifier: PreviewTableCell.className())
         previewTableView.bounces = false
         self.gamingLbl.text = NavigationTitle.gamingString.localiz()
         self.gameIntroLbl.text = NavigationTitle.gameIntroString.localiz()
@@ -63,9 +70,9 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     func setdefaultStock() -> Void {
         self.stockLbl.text = Stock.CryptoCurrency.localiz()
         self.BTULbl.text = Stock.BTCUSDT.localiz()
-        appDelegate.selectedStockname = Stock.CryptoCurrency
-        appDelegate.selectedBTUName = Stock.BTCUSDT
-        appDelegate.selectedTimeLoop = Stock.oneMinutes
+        appDelegate.sharedInstance.selectedStockname = Stock.CryptoCurrency
+        appDelegate.sharedInstance.selectedBTUName = Stock.BTCUSDT
+        appDelegate.sharedInstance.selectedTimeLoop = Stock.oneMinutes
     }
     
     //MARK: - Button Outlet -
@@ -93,8 +100,9 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         }
         else {
             sender.isSelected = true
-            
-            let path = Bundle.main.path(forResource: AssetResource.welcomeSound, ofType : AssetName.mp3String)!
+            //Added code for pods
+            let bundle = Bundle.init(for: self.classForCoder)
+            let path = bundle.path(forResource: AssetResource.welcomeSound, ofType : AssetName.mp3String)!
             let url = URL(fileURLWithPath : path)
             do {
                 player = try AVAudioPlayer(contentsOf: url)
@@ -106,7 +114,7 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         }
     }
     func getMovetoGameAction(_ sender: UIButton) {
-        let view = appDelegate.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
+        let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
         view.selectedStockId = self.selectedStockId
         view.timeloop = self.timeloop
         self.navigationController?.pushViewController(view, animated: true)
@@ -131,7 +139,9 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     
     //MARK: - Custom Method -
     func getLaunguageChnageBtnAction(sender : UIButton)  {
-        languagePopupView = Bundle.main.loadNibNamed(LanguageView.className(), owner: self, options: nil)?[0] as! LanguageView
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: LanguageView.className())
+        languagePopupView = bundle.loadNibNamed(LanguageView.className(), owner: self, options: nil)?[0] as! LanguageView
         languagePopupView.languageDelegate = self
         languagePopupView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         languagePopupView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -142,49 +152,55 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     }
     
     func updateFlagForSelectedLanguage() -> Void {
+        //Added code for pods
+        var tempFlagImage : UIImage?
         if UserDefaults.standard.bool(forKey: UserDefaultsKey.isLanguageDefinded) {
             if LanguageManager.shared.currentLanguage == .en {
-                languageButton.setImage(UIImage(named: AssetName.usaFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.usaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
             else if LanguageManager.shared.currentLanguage == .th {
-                languageButton.setImage(UIImage(named: AssetName.thaiFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.thaiFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
             else if LanguageManager.shared.currentLanguage == .lao {
-                languageButton.setImage(UIImage(named: AssetName.laoFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.laoFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
             else if LanguageManager.shared.currentLanguage == .zhHans {
-                languageButton.setImage(UIImage(named: AssetName.chinaFlag), for: .normal)
+                tempFlagImage = UIImage.init(named: AssetName.chinaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             }
         }
         else {
-            languageButton.setImage(UIImage(named: AssetName.usaFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.usaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
         }
+        languageButton.setImage(tempFlagImage, for: .normal)
     }
     
     //MARK: - Refresh Text for Multi Language support -
     func updateTextOnLanguageChange() -> Void {
         self.gamingLbl.text = NavigationTitle.gamingString.localiz()
         self.gameIntroLbl.text = NavigationTitle.gameIntroString.localiz()
-        self.stockLbl.text = appDelegate.selectedStockname.localiz()
-        self.BTULbl.text = appDelegate.selectedBTUName.localiz()
+        self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
+        self.BTULbl.text = appDelegate.sharedInstance.selectedBTUName.localiz()
         self.previewTableView.reloadData()
     }
     
     //MARK: - Delegate -
     func changeSelectedLanguage(selectedLanguageIndex: Int) {
+        //Added code for pods
+        var tempFlagImage : UIImage?
         if selectedLanguageIndex == 1 {
-            languageButton.setImage(UIImage(named: AssetName.usaFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.usaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .en
         } else if selectedLanguageIndex == 4 {
-            languageButton.setImage(UIImage(named: AssetName.thaiFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.thaiFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .th
         } else if selectedLanguageIndex == 3 {
-            languageButton.setImage(UIImage(named: AssetName.laoFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.laoFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .lao
         } else { //2 for china
-            languageButton.setImage(UIImage(named: AssetName.chinaFlag), for: .normal)
+            tempFlagImage = UIImage.init(named: AssetName.chinaFlag, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
             LanguageManager.shared.currentLanguage = .zhHans
         }
+        languageButton.setImage(tempFlagImage, for: .normal)
         UserDefaults.init().set(true, forKey: UserDefaultsKey.isLanguageDefinded)
         self.updateTextOnLanguageChange()
     }
@@ -197,7 +213,7 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
             dropDownObj.tag = 9
             dropDownObj.width = stockLbl.frame.width + 15
             dropDownObj.dataSource = [Stock.USStock.localiz(), Stock.ChinaStock.localiz(), Stock.CryptoCurrency.localiz()]
-            appDelegate.dropdownArray = [Stock.USStock, Stock.ChinaStock, Stock.CryptoCurrency]
+            appDelegate.sharedInstance.dropdownArray = [Stock.USStock, Stock.ChinaStock, Stock.CryptoCurrency]
         }
         else if sender.tag == 10 {
             dropDownObj.tag = 10
@@ -206,15 +222,15 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
             let selectedStock = stockLbl.text?.localiz()
             if selectedStock == Stock.USStock.localiz() {
                 dropDownObj.dataSource = [Stock.USDollarIndiex.localiz()]
-                appDelegate.dropdownArray = [Stock.USDollarIndiex]
+                appDelegate.sharedInstance.dropdownArray = [Stock.USDollarIndiex]
             }
             else if selectedStock == Stock.ChinaStock.localiz() {
                 dropDownObj.dataSource = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
-                appDelegate.dropdownArray = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
+                appDelegate.sharedInstance.dropdownArray = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
             }
             else if selectedStock == Stock.CryptoCurrency.localiz() {
                 dropDownObj.dataSource = [Stock.BTCUSDT.localiz()]
-                appDelegate.dropdownArray = [Stock.BTCUSDT]
+                appDelegate.sharedInstance.dropdownArray = [Stock.BTCUSDT]
             }
             else {
                 self.makeToastInBottomWithMessage(AlertField.emptyStockString)
@@ -236,45 +252,45 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
             print("Selected item: \(item) at index: \(index)")
             self.dropDownObj.hide()
             if self.dropDownObj.tag == 9 {
-                self.stockLbl.text = self.appDelegate.dropdownArray[index].localiz() //item.localiz()
+                self.stockLbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz() //item.localiz()
                 self.BTULbl.text = Stock.selectBTU.localiz()
-                self.appDelegate.selectedStockname = self.appDelegate.dropdownArray[index]
+                appDelegate.sharedInstance.selectedStockname = appDelegate.sharedInstance.dropdownArray[index]
             }
             else if self.dropDownObj.tag == 10 {
-                self.stockLbl.text = self.appDelegate.selectedStockname.localiz()
-                self.BTULbl.text = self.appDelegate.dropdownArray[index].localiz()
-                self.appDelegate.selectedBTUName = self.appDelegate.dropdownArray[index]
-                if self.appDelegate.selectedStockname == Stock.USStock {
+                self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
+                self.BTULbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz()
+                appDelegate.sharedInstance.selectedBTUName = appDelegate.sharedInstance.dropdownArray[index]
+                if appDelegate.sharedInstance.selectedStockname == Stock.USStock {
                     self.selectedStockId = 5
                     self.timeloop = 300
-                    self.appDelegate.selectedTimeLoop = Stock.fiveMinutes
+                    appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
                 }
-                else if self.appDelegate.selectedStockname == Stock.ChinaStock {
-                    if self.appDelegate.selectedBTUName == Stock.SH000001 {
+                else if appDelegate.sharedInstance.selectedStockname == Stock.ChinaStock {
+                    if appDelegate.sharedInstance.selectedBTUName == Stock.SH000001 {
                         self.selectedStockId = 1
                         self.timeloop = 300
-                        self.appDelegate.selectedTimeLoop = Stock.fiveMinutes
+                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
                     }
-                    else if self.appDelegate.selectedBTUName == Stock.SZ399001 {
+                    else if appDelegate.sharedInstance.selectedBTUName == Stock.SZ399001 {
                         self.selectedStockId = 4
                         self.timeloop = 300
-                        self.appDelegate.selectedTimeLoop = Stock.fiveMinutes
+                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
                     }
-                    else if self.appDelegate.selectedBTUName == Stock.SZ399415 {
+                    else if appDelegate.sharedInstance.selectedBTUName == Stock.SZ399415 {
                         self.selectedStockId = 3
                         self.timeloop = 300
-                        self.appDelegate.selectedTimeLoop = Stock.fiveMinutes
+                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
                     }
-                    else if self.appDelegate.selectedBTUName == Stock.SH000300 {
+                    else if appDelegate.sharedInstance.selectedBTUName == Stock.SH000300 {
                         self.selectedStockId = 2
                         self.timeloop = 300
-                        self.appDelegate.selectedTimeLoop = Stock.fiveMinutes
+                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
                     }
                 }
-                else if self.appDelegate.selectedStockname == Stock.CryptoCurrency {
+                else if appDelegate.sharedInstance.selectedStockname == Stock.CryptoCurrency {
                     self.selectedStockId = 7
                     self.timeloop = 60
-                    self.appDelegate.selectedTimeLoop = Stock.oneMinutes
+                    appDelegate.sharedInstance.selectedTimeLoop = Stock.oneMinutes
                 }
                 self.getRoadmapDataFromServer(stockID: self.selectedStockId)
             }
@@ -362,7 +378,9 @@ extension PreviewViewController {
         
         let cell = previewTableView.dequeueReusableCell(withIdentifier: PreviewTableCell.className()) as? PreviewTableCell
         if cell == nil {
-            previewTableView.register(UINib(nibName: PreviewTableCell.className(), bundle: nil), forCellReuseIdentifier: PreviewTableCell.className())
+            //Added code for pods
+            let bundle = self.initialiseBundle(ClassString: PreviewTableCell.className())
+            previewTableView.register(UINib(nibName: PreviewTableCell.className(), bundle: bundle), forCellReuseIdentifier: PreviewTableCell.className())
            }
         cell?.label1.backgroundColor = .clear
         cell?.contentView.bringSubviewToFront(cell!.label1)
@@ -374,8 +392,8 @@ extension PreviewViewController {
             cell?.label1.text = buttonTitle.roadmaplastDigitString.localiz()
         }
         
-        cell?.label4.text = appDelegate.selectedStockname.localiz()
-        cell?.label5.text = appDelegate.selectedBTUName.localiz()
+        cell?.label4.text = appDelegate.sharedInstance.selectedStockname.localiz()
+        cell?.label5.text = appDelegate.sharedInstance.selectedBTUName.localiz()
        
         cell?.collectionDataArray = tableArray[indexPath.row] as! [FirstDigitItems]
         cell?.numberCollectionView.reloadData()
@@ -400,8 +418,8 @@ extension PreviewViewController {
             self.makeToastInBottomWithMessage(AlertField.emptyStockString)
             return
         }
-        
-        let view = appDelegate.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
+        //Added code for pods
+        let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
         view.selectedStockId = self.selectedStockId
         view.timeloop = self.timeloop
         if sender?.view?.tag == 0 {
@@ -414,5 +432,18 @@ extension PreviewViewController {
             view.betDigitString = BetDigit.lastdigit
         }
         self.navigationController?.pushViewController(view, animated: true)
+    }
+}
+
+extension PreviewViewController {
+    
+    func initialSetup(){
+        UserDefaults.standard.set(false, forKey: UserDefaultsKey.isProfileShow)
+        IQKeyboardManager.shared.enable = true
+        let islangSet = UserDefaults.init().bool(forKey: UserDefaultsKey.isLanguageDefinded)
+        if !islangSet {
+            LanguageManager.shared.defaultLanguage = .en
+            LanguageManager.shared.currentLanguage = .en
+        }
     }
 }

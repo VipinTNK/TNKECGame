@@ -104,7 +104,9 @@ class OnlineHistoryViewController: UIViewController, ChartViewDelegate, datePick
     func getDatePickerBtnAction(minDate : String){
         self.mainBackView.alpha = 0.5
         self.mainBackView.isUserInteractionEnabled = false
-        datePickerView = Bundle.main.loadNibNamed(DatePickerView.className(), owner: self, options: nil)?[0] as! DatePickerView
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: DatePickerView.className())
+        datePickerView = bundle.loadNibNamed(DatePickerView.className(), owner: self, options: nil)?[0] as! DatePickerView
         datePickerView.delegate = self
         datePickerView.dateFormatter.dateFormat = PickerTitle.datePickerFormatString
         if minDate.count == 0 {

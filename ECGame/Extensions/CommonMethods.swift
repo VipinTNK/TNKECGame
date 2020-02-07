@@ -104,6 +104,14 @@ import UIKit
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0))
     }
+    
+    //Added code for pods
+    class func initialiseBundle(ClassString : String) -> Bundle {
+        let bundle = Bundle(for: self.classForCoder())
+        let nib = UINib(nibName: ClassString, bundle: bundle)
+        nib.instantiate(withOwner: self, options: nil)
+        return bundle
+    }
 }
 
 extension Date {

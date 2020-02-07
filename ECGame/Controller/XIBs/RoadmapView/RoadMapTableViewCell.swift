@@ -18,7 +18,9 @@ class RoadMapTableViewCell: UITableViewCell, UICollectionViewDataSource,UICollec
         super.awakeFromNib()
         roadMapCollectionView.delegate = self
         roadMapCollectionView.dataSource = self
-        roadMapCollectionView.register(UINib.init(nibName: RoadMapCollectionCell.className(), bundle: nil), forCellWithReuseIdentifier: RoadMapCollectionCell.className())
+        //Added code for pods
+        let bundle = CommonMethods.initialiseBundle(ClassString: RoadMapCollectionCell.className())
+        roadMapCollectionView.register(UINib.init(nibName: RoadMapCollectionCell.className(), bundle: bundle), forCellWithReuseIdentifier: RoadMapCollectionCell.className())
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

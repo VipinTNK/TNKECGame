@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
     //MARK:- Cell Button Action
     @objc func btnAction(_ sender: AnyObject) {
 
-        let viewObj = appDelegate.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: ClipsViewController.className()) as! ClipsViewController
+        let viewObj = self.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: ClipsViewController.className()) as! ClipsViewController
         self.navigationController?.pushViewController(viewObj, animated: true)
             
     }
@@ -131,9 +131,11 @@ extension SettingsViewController : UITableViewDataSource,UITableViewDelegate {
                 cell.ononeBtn.addTarget(self, action: #selector(SettingsViewController.ononebtnAction(_:)), for: .touchUpInside)
                 if selectedindex == indexPath.row{
                     if isSetBackgroundImage == true {
-                        cell.segmentImageView.image = UIImage(named: "setting_segment")
+                        let setting_segment = UIImage.init(named: "setting_segment", in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
+                        cell.segmentImageView.image = setting_segment
                     }else {
-                        cell.segmentImageView.image = UIImage(named: "show_onone")
+                        let show_onone = UIImage.init(named: "show_onone", in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
+                        cell.segmentImageView.image = show_onone
                     }
                 }
                 customCell = cell
@@ -147,9 +149,11 @@ extension SettingsViewController : UITableViewDataSource,UITableViewDelegate {
                         UserDefaults.standard.set(isSetSwitchBackgroundImage, forKey: UserDefaultsKey.isMusicOnOff)
                     }
                     if isSetSwitchBackgroundImage == true {
-                        cell.switchButton.setBackgroundImage(UIImage(named: "SwitchOn"), for: .normal)
+                        let SwitchOn = UIImage.init(named: "SwitchOn", in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
+                        cell.switchButton.setBackgroundImage(SwitchOn, for: .normal)
                     }else {
-                        cell.switchButton.setBackgroundImage(UIImage(named: "swiftOff"), for: .normal)
+                        let swiftOff = UIImage.init(named: "swiftOff", in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
+                        cell.switchButton.setBackgroundImage(swiftOff, for: .normal)
                     }
                 }
                 cell.switchButton.addTarget(self, action: #selector(SettingsViewController.switchButtonAction(_:)), for: .touchUpInside)

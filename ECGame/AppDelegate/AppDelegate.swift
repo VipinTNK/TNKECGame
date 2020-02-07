@@ -13,15 +13,14 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    /*
     var selectedStockname = ""
     var selectedBTUName = ""
     var selectedTimeLoop = ""
-    var dropdownArray = [String]()
+    var dropdownArray = [String]() */
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        initialSetup()
-        sleep(2)
         return true
     }
 
@@ -56,29 +55,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask.landscape
     }
 
-}
-
-extension AppDelegate {
-    /// Setting the initial data
-    func initialSetup(){
-        UserDefaults.standard.set(false, forKey: UserDefaultsKey.isProfileShow)
-        IQKeyboardManager.shared.enable = true
-        let islangSet = UserDefaults.init().bool(forKey: UserDefaultsKey.isLanguageDefinded)
-        if !islangSet {
-            LanguageManager.shared.defaultLanguage = .en
-            LanguageManager.shared.currentLanguage = .en
-        }
-    }
-    
-    func getAppDelegate() -> AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
-    }
-    
-    func getMainStoryBoardSharedInstance() -> UIStoryboard {
-        return UIStoryboard(name: "Main", bundle: nil)
-    }
-    
-    func getSidemenuStoryBoardSharedInstance() -> UIStoryboard {
-        return UIStoryboard(name: "SideMenu", bundle: nil)
-    }
 }

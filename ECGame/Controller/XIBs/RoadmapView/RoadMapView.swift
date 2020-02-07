@@ -58,7 +58,9 @@ class RoadMapView: UIView, UITableViewDelegate, UITableViewDataSource {
         roadMapTableView.dataSource = self
         
         //Register XIB to the tableView
-        roadMapTableView.register(UINib(nibName: RoadMapTableViewCell.className(), bundle: nil), forCellReuseIdentifier: RoadMapTableViewCell.className())
+        //Added code for pods
+        let bundle = CommonMethods.initialiseBundle(ClassString: RoadMapTableViewCell.className())
+        roadMapTableView.register(UINib(nibName: RoadMapTableViewCell.className(), bundle: bundle), forCellReuseIdentifier: RoadMapTableViewCell.className())
         
         //Remove extra cells from tableView
         roadMapTableView.tableFooterView = UIView()
@@ -116,7 +118,9 @@ extension RoadMapView {
     
     let cell = roadMapTableView.dequeueReusableCell(withIdentifier: RoadMapTableViewCell.className()) as? RoadMapTableViewCell
            if cell == nil {
-            roadMapTableView.register(UINib(nibName: RoadMapTableViewCell.className(), bundle: nil), forCellReuseIdentifier: RoadMapTableViewCell.className())
+            //Added code for pods
+            let bundle = CommonMethods.initialiseBundle(ClassString: RoadMapTableViewCell.className())
+            roadMapTableView.register(UINib(nibName: RoadMapTableViewCell.className(), bundle: bundle), forCellReuseIdentifier: RoadMapTableViewCell.className())
            }
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         cell?.roadMapCollectionView.addGestureRecognizer(tap)

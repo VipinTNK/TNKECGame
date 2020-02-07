@@ -41,6 +41,7 @@ class RulesViewController: UIViewController, WKUIDelegate, UIApplicationDelegate
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.scrollView.bounces = false
+        webView.setCornerRadiusOfView(cornerRadiusValue: 5.0)
         self.openUrl()
     }
     

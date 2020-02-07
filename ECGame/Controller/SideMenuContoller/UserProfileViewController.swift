@@ -129,12 +129,9 @@ class UserProfileViewController: UIViewController,UIGestureRecognizerDelegate, U
     }
     @objc func viewProfileimageActionTapped(_ sender: UITapGestureRecognizer) {
         if (UserDefaults.standard.bool(forKey:UserDefaultsKey.isProfileShow) == true){
-        
-            let viewObj = appDelegate.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: ShowUserProfileViewController.className()) as! ShowUserProfileViewController
+            let viewObj = self.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: ShowUserProfileViewController.className()) as! ShowUserProfileViewController
             viewObj.newImage = userProfilePictureImageView.image
-           
-            self.present(viewObj, animated: true, completion: nil) //self.navigationController?.pushViewController(viewObj, animated: true)
-            
+            self.present(viewObj, animated: true, completion: nil)
         }
     }
     

@@ -121,7 +121,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     //MARK: - Laod Intials - 
     func loadAllInitialViews() {
         //Roadmapview
-        roadMapView = Bundle.main.loadNibNamed(RoadMapView.className(), owner: self, options: nil)?[0] as! RoadMapView
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: RoadMapView.className())
+        roadMapView = bundle.loadNibNamed(RoadMapView.className(), owner: self, options: nil)?[0] as! RoadMapView
         roadMapView.frame = CGRect(x: -8, y: -10, width: self.view.frame.size.width/2.15, height: self.view.frame.size.height/4.3)
         roadMapView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         roadMapView.layer.cornerRadius = 10
@@ -192,9 +194,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         appDelegate.selectedBTUName = Stock.BTCUSDT
         appDelegate.selectedTimeLoop = Stock.oneMinutes */
         
-        self.stockLbl.text = appDelegate.selectedStockname.localiz()
-        self.BTULbl.text = appDelegate.selectedBTUName.localiz()
-        self.timeLbl.text = appDelegate.selectedTimeLoop.localiz()
+        self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
+        self.BTULbl.text = appDelegate.sharedInstance.selectedBTUName.localiz()
+        self.timeLbl.text = appDelegate.sharedInstance.selectedTimeLoop.localiz()
         if betDigitString == BetDigit.firstdigit {
             self.fisrtDigitBtnClicked(FDButton)
         }
@@ -294,27 +296,11 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     //MARK: - IBActions  Methods-
     func getmusicBtnAction(sender : UIButton)  {
         self.navigationController?.popViewController(animated: true)
-        /*
-        if sender.isSelected {
-            sender.isSelected = false
-            player?.stop()
-        }
-        else {
-            sender.isSelected = true
-            
-            let path = Bundle.main.path(forResource: AssetResource.welcomeSound, ofType : AssetName.mp3String)!
-            let url = URL(fileURLWithPath : path)
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                player?.play()
-                
-            } catch {
-                print ("Error in music load")
-            }
-        } */
     }
     func getLaunguageChnageBtnAction(sender : UIButton)  {
-        languagePopupView = Bundle.main.loadNibNamed(LanguageView.className(), owner: self, options: nil)?[0] as! LanguageView
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: LanguageView.className())
+        languagePopupView = bundle.loadNibNamed(LanguageView.className(), owner: self, options: nil)?[0] as! LanguageView
         languagePopupView.languageDelegate = self
         languagePopupView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         languagePopupView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -324,7 +310,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         view.bringSubviewToFront(languagePopupView)
     }
     func getMenuBtnAction()  {
-        sideMenuView = Bundle.main.loadNibNamed(SideMenu.className(), owner: self, options: nil)?[0] as! SideMenu
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: SideMenu.className())
+        sideMenuView = bundle.loadNibNamed(SideMenu.className(), owner: self, options: nil)?[0] as! SideMenu
         sideMenuView.delegate = self
         sideMenuView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         sideMenuView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -500,7 +488,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
             mousePlayer?.play()
         }
         else {
-            let path = Bundle.main.path(forResource: AssetResource.mosueClickSound, ofType : AssetName.mp3String)!
+            //Added code for pods
+            let bundle = Bundle.init(for: self.classForCoder)
+            let path = bundle.path(forResource: AssetResource.mosueClickSound, ofType : AssetName.mp3String)!
             let url = URL(fileURLWithPath : path)
             do {
                 mousePlayer = try AVAudioPlayer(contentsOf: url)
@@ -519,22 +509,22 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         if sender.tag == 9 {
             dropDownObj.tag = 9
             dropDownObj.dataSource = [Stock.USStock.localiz(), Stock.ChinaStock.localiz(), Stock.CryptoCurrency.localiz()]
-            appDelegate.dropdownArray = [Stock.USStock, Stock.ChinaStock, Stock.CryptoCurrency]
+            appDelegate.sharedInstance.dropdownArray = [Stock.USStock, Stock.ChinaStock, Stock.CryptoCurrency]
         }
         else if sender.tag == 10 {
             dropDownObj.tag = 10
             let selectedStock = stockLbl.text?.localiz()
             if selectedStock == Stock.USStock.localiz() {
                 dropDownObj.dataSource = [Stock.USDollarIndiex.localiz()]
-                appDelegate.dropdownArray = [Stock.USDollarIndiex]
+                appDelegate.sharedInstance.dropdownArray = [Stock.USDollarIndiex]
             }
             else if selectedStock == Stock.ChinaStock.localiz() {
                 dropDownObj.dataSource = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
-                appDelegate.dropdownArray = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
+                appDelegate.sharedInstance.dropdownArray = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
             }
             else if selectedStock == Stock.CryptoCurrency.localiz() {
                 dropDownObj.dataSource = [Stock.BTCUSDT.localiz()]
-                appDelegate.dropdownArray = [Stock.BTCUSDT]
+                appDelegate.sharedInstance.dropdownArray = [Stock.BTCUSDT]
             }
             else {
                 self.makeToastInBottomWithMessage(AlertField.emptyStockString)
@@ -546,11 +536,11 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
             let selectedStock = stockLbl.text?.localiz()
             if selectedStock == Stock.CryptoCurrency.localiz() {
                 dropDownObj.dataSource = [Stock.fiveMinutes.localiz(), Stock.oneMinutes.localiz()]
-                appDelegate.dropdownArray = [Stock.fiveMinutes, Stock.oneMinutes]
+                appDelegate.sharedInstance.dropdownArray = [Stock.fiveMinutes, Stock.oneMinutes]
             }
             else {
                 dropDownObj.dataSource = [Stock.fiveMinutes.localiz()]
-                appDelegate.dropdownArray = [Stock.fiveMinutes]
+                appDelegate.sharedInstance.dropdownArray = [Stock.fiveMinutes]
             }
         }
         dropDownObj.show()
@@ -570,7 +560,8 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
     // OpenMenu -
     func openMenuAction(selectedValue: Int, viewController: String) {
-        let viewObj = appDelegate.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: viewController)
+        //Added code for pods
+        let viewObj = self.getSidemenuStoryBoardSharedInstance().instantiateViewController(withIdentifier: viewController)
         self.navigationController?.pushViewController(viewObj, animated: true)
     }
   
@@ -613,22 +604,22 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
             print("Selected item: \(item) at index: \(index)")
             self.dropDownObj.hide()
             if self.dropDownObj.tag == 9 {
-                self.stockLbl.text = self.appDelegate.dropdownArray[index].localiz() //item.localiz()
+                self.stockLbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz() //item.localiz()
                 self.BTULbl.text = Stock.selectBTU.localiz()
                 self.timeLbl.text = Stock.selectTime.localiz()
-                self.appDelegate.selectedStockname = self.appDelegate.dropdownArray[index]
+                appDelegate.sharedInstance.selectedStockname = appDelegate.sharedInstance.dropdownArray[index]
             }
             else if self.dropDownObj.tag == 10 {
-                self.stockLbl.text = self.appDelegate.selectedStockname.localiz()
-                self.BTULbl.text = self.appDelegate.dropdownArray[index].localiz()
+                self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
+                self.BTULbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz()
                 self.timeLbl.text = Stock.selectTime.localiz()
-                self.appDelegate.selectedBTUName = self.appDelegate.dropdownArray[index]
+                appDelegate.sharedInstance.selectedBTUName = appDelegate.sharedInstance.dropdownArray[index]
             }
             else if self.dropDownObj.tag == 11 {
-                self.stockLbl.text = self.appDelegate.selectedStockname.localiz()
-                self.BTULbl.text = self.appDelegate.selectedBTUName.localiz()
-                self.timeLbl.text = self.appDelegate.dropdownArray[index].localiz()
-                self.appDelegate.selectedTimeLoop = self.appDelegate.dropdownArray[index]
+                self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
+                self.BTULbl.text = appDelegate.sharedInstance.selectedBTUName.localiz()
+                self.timeLbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz()
+                appDelegate.sharedInstance.selectedTimeLoop = appDelegate.sharedInstance.dropdownArray[index]
                 if self.stockLbl.text?.localiz() == Stock.CryptoCurrency.localiz() {
                     if self.timeLbl.text?.localiz() == Stock.oneMinutes.localiz() {
                         self.selectedStockId = 7
@@ -777,7 +768,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
     //MARK: - Bet ClsoeView -
     func showBetCloseView() -> Void {
-        betCloseView = Bundle.main.loadNibNamed(BetCloseView.className(), owner: self, options: nil)?[0] as! BetCloseView
+        //Added code for pods
+        let bundle = self.initialiseBundle(ClassString: BetCloseView.className())
+        betCloseView = bundle.loadNibNamed(BetCloseView.className(), owner: self, options: nil)?[0] as! BetCloseView
         betCloseView.frame = CGRect(x: (self.view.frame.size.width/2) + 72, y: 77, width: (self.view.frame.size.width/2) - 70, height: self.view.frame.size.height-77)
         betCloseView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         betCloseView.layer.masksToBounds = true
@@ -861,9 +854,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         self.clearButton.setTitle(buttonTitle.claerBtnString.localiz(), for: .normal)
         self.confirmButton.setTitle(buttonTitle.confirmBtnString.localiz(), for: .normal)
         //Stock
-        self.stockLbl.text = appDelegate.selectedStockname.localiz()
-        self.BTULbl.text = appDelegate.selectedBTUName.localiz()
-        self.timeLbl.text = appDelegate.selectedTimeLoop.localiz()
+        self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
+        self.BTULbl.text = appDelegate.sharedInstance.selectedBTUName.localiz()
+        self.timeLbl.text = appDelegate.sharedInstance.selectedTimeLoop.localiz()
         //Close Bet
         if self.view.subviews.contains(betCloseView) {
             betCloseView.closeLbl.text = AlertField.betClosedString.localiz()
@@ -907,7 +900,10 @@ extension GameViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChipsCell.className(), for: indexPath) as! ChipsCell
         cell.titleLbl.text = chipsArray[indexPath.row]
-        cell.chipImageView.image = (selelctedRow == indexPath.row) ? UIImage.init(named: AssetName.chipsSelectedString) : UIImage.init(named: AssetName.chipsString)
+        //Added code for pods
+        let selectedImage = UIImage.init(named: AssetName.chipsSelectedString, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
+        let normalImage = UIImage.init(named: AssetName.chipsString, in: Bundle.init(for: self.classForCoder), compatibleWith: nil)
+        cell.chipImageView.image = (selelctedRow == indexPath.row) ? selectedImage : normalImage
         return cell
     }
     
@@ -1086,8 +1082,6 @@ extension GameViewController {
         }
     }
 }
-
-
 
 class PillMarker: MarkerImage {
     

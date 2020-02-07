@@ -89,10 +89,22 @@ extension UIViewController     {
     func twoDigitFormatted(_ numberValue: Int) -> String {
         return String(format: "%02d", numberValue)
     }
+    //Added code for pods
+    func initialiseBundle(ClassString : String) -> Bundle {
+        let bundle = Bundle(for: self.classForCoder)
+        let nib = UINib(nibName: ClassString, bundle: bundle)
+        nib.instantiate(withOwner: self, options: nil)
+        return bundle
+    }
     
-    //Appdelegate
-    var appDelegate: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
+    func getMainStoryBoardSharedInstance() -> UIStoryboard {
+        let bundle = Bundle.init(for: self.classForCoder)
+        return UIStoryboard(name: "Main", bundle: bundle)
+    }
+    
+    func getSidemenuStoryBoardSharedInstance() -> UIStoryboard {
+        let bundle = Bundle.init(for: self.classForCoder)
+        return UIStoryboard(name: "SideMenu", bundle: bundle)
     }
 }
 //Class ends here
