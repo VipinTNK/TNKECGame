@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TNKECGame'
-  s.version          = '1.8.2'
+  s.version          = '1.8.3'
   s.summary          = 'This is betting app for casino users'
  
   s.description      = 'User can bet on multiple option in casino like first digit, last digit and enjoy the quality time in casino'
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
  
   s.ios.deployment_target = '10.0'
  s.source_files = 'ECGame/**/*.{swift}'
- s.resources = 'ECGame/**/*.{storyboard,xib,xcassets,lproj,json,png}'
+ s.resources = 'ECGame/**/*.{storyboard,xib,xcassets,lproj,json,png,mp3}'
 
 s.framework = "UIKit"
 s.dependency 'MBProgressHUD'
