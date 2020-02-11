@@ -95,6 +95,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     var notifCounter = 0
     var selelctedRow = -1
     let popTip = PopTip()
+    var updateLocaleClosure : (() -> Void)?
     
     //MARK: - View life -
     override func viewDidLoad() {
@@ -591,6 +592,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         languageButton.setImage(tempFlagImage, for: .normal)
         UserDefaults.init().set(true, forKey: UserDefaultsKey.isLanguageDefinded)
         self.updateTextOnLanguageChange()
+        updateLocaleClosure?()
     }
     
     //MARK: - Drop Down -

@@ -117,6 +117,10 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
         view.selectedStockId = self.selectedStockId
         view.timeloop = self.timeloop
+        view.updateLocaleClosure = { () in
+            self.updateFlagForSelectedLanguage()
+            self.updateTextOnLanguageChange()
+        }
         self.navigationController?.pushViewController(view, animated: true)
     }
     

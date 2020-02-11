@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TNKECGame'
-  s.version          = '1.8.4'
+  s.version          = '1.8.5'
   s.summary          = 'This is betting app for casino users'
  
   s.description      = 'User can bet on multiple option in casino like first digit, last digit and enjoy the quality time in casino'
