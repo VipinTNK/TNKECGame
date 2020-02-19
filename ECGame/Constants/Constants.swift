@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+open class PortalProvider : NSObject {
+    public static let sharedInstance = PortalProvider()
+    public var portalProviderId = ""
+    public var authUsername = ""
+    public var authPassword = ""
+    public var domainName = ""
+}
+
 // MARK: - Global Varialbles
 public struct appDelegate {
     static var sharedInstance = GlobalVariables()

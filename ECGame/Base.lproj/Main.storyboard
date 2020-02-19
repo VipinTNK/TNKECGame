@@ -916,7 +916,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-Bq-UhX">
-                                <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <rect key="frame" x="60" y="10" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="0GY-pN-Uud"/>
@@ -925,17 +925,15 @@
                                 <state key="normal" image="USA Flag"/>
                                 <state key="selected" image="musicOn"/>
                                 <connections>
-                                    <action selector="changeLanguageAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YWd-TB-6cN"/>
                                     <action selector="languageBtnClicked:" destination="1vy-rm-lZ9" eventType="touchUpInside" id="4lK-eW-9bZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-cb-gOv">
-                                <rect key="frame" x="60" y="10" width="40" height="40"/>
+                                <rect key="frame" x="110" y="10" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="volume mute"/>
                                 <state key="selected" image="musicOn"/>
                                 <connections>
-                                    <action selector="musicBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gza-3f-dcS"/>
                                     <action selector="musicBtnClicked:" destination="1vy-rm-lZ9" eventType="touchUpInside" id="oog-xb-1XA"/>
                                 </connections>
                             </button>
@@ -1011,8 +1009,18 @@
                                 </constraints>
                                 <state key="normal" image="nextBtn"/>
                                 <connections>
-                                    <action selector="menuBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pX7-id-IfB"/>
                                     <action selector="movetoGameClicked:" destination="1vy-rm-lZ9" eventType="touchUpInside" id="Qnr-1r-Hhv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9a-yt-Ds6">
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="D2Y-uI-3mZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="jmk-ey-ex9"/>
+                                </constraints>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="backBtnClicked:" destination="1vy-rm-lZ9" eventType="touchUpInside" id="fam-GN-8As"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the road map for directly onboarding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHI-nX-8z5">
@@ -1141,12 +1149,13 @@
                             <constraint firstItem="Fng-43-ISj" firstAttribute="trailing" secondItem="LkX-mX-qk2" secondAttribute="trailing" constant="10" id="1J6-Se-Bx9"/>
                             <constraint firstItem="AOA-Bq-UhX" firstAttribute="top" secondItem="Fng-43-ISj" secondAttribute="top" constant="10" id="2uT-p8-ayZ"/>
                             <constraint firstItem="Ue4-GK-9kk" firstAttribute="top" secondItem="fDl-C8-WR9" secondAttribute="top" id="575-IK-ZBp"/>
+                            <constraint firstItem="q9a-yt-Ds6" firstAttribute="top" secondItem="Fng-43-ISj" secondAttribute="top" constant="10" id="7qG-W1-h8N"/>
                             <constraint firstItem="kaD-4D-qxZ" firstAttribute="top" secondItem="Fng-43-ISj" secondAttribute="top" constant="10" id="C5y-9Y-2S6"/>
                             <constraint firstItem="LkX-mX-qk2" firstAttribute="top" secondItem="Fng-43-ISj" secondAttribute="top" constant="10" id="D2u-dq-KHE"/>
                             <constraint firstItem="Ue4-GK-9kk" firstAttribute="trailing" secondItem="fDl-C8-WR9" secondAttribute="trailing" id="DV3-c3-wXB"/>
                             <constraint firstItem="Oyt-cb-gOv" firstAttribute="top" secondItem="Fng-43-ISj" secondAttribute="top" constant="10" id="Gw8-lZ-1ZQ"/>
                             <constraint firstItem="Oyt-cb-gOv" firstAttribute="width" secondItem="AOA-Bq-UhX" secondAttribute="width" id="H1y-n2-wg5"/>
-                            <constraint firstItem="AOA-Bq-UhX" firstAttribute="leading" secondItem="Fng-43-ISj" secondAttribute="leading" constant="10" id="Hi1-Ld-Lc7"/>
+                            <constraint firstItem="AOA-Bq-UhX" firstAttribute="leading" secondItem="Fng-43-ISj" secondAttribute="leading" constant="60" id="Hi1-Ld-Lc7"/>
                             <constraint firstItem="kcl-r2-vWX" firstAttribute="leading" secondItem="iHI-nX-8z5" secondAttribute="trailing" constant="10" id="JTy-Qs-hvl"/>
                             <constraint firstItem="mny-oh-QTc" firstAttribute="leading" secondItem="kcl-r2-vWX" secondAttribute="trailing" constant="5" id="K7n-72-KDZ"/>
                             <constraint firstItem="mny-oh-QTc" firstAttribute="top" secondItem="kaD-4D-qxZ" secondAttribute="bottom" constant="1" id="Ncw-gO-u3i"/>
@@ -1163,6 +1172,7 @@
                             <constraint firstItem="kaD-4D-qxZ" firstAttribute="leading" secondItem="eST-He-DvT" secondAttribute="trailing" constant="10" id="q2b-wC-SVK"/>
                             <constraint firstItem="Oyt-cb-gOv" firstAttribute="height" secondItem="AOA-Bq-UhX" secondAttribute="height" id="qX0-jG-7ys"/>
                             <constraint firstItem="Ue4-GK-9kk" firstAttribute="bottom" secondItem="fDl-C8-WR9" secondAttribute="bottom" id="s22-57-feC"/>
+                            <constraint firstItem="q9a-yt-Ds6" firstAttribute="leading" secondItem="Fng-43-ISj" secondAttribute="leading" constant="10" id="tVi-S5-hoq"/>
                             <constraint firstItem="Fng-43-ISj" firstAttribute="trailing" secondItem="ruX-Li-AZW" secondAttribute="trailing" constant="10" id="uQB-Bf-Rsl"/>
                             <constraint firstItem="iHI-nX-8z5" firstAttribute="leading" secondItem="Fng-43-ISj" secondAttribute="leading" constant="10" id="vDH-XS-VSN"/>
                         </constraints>

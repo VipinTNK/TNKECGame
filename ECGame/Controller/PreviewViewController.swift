@@ -76,6 +76,9 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     }
     
     //MARK: - Button Outlet -
+    @IBAction func backBtnClicked(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: false)
+    }
     @IBAction func languageBtnClicked(_ sender: UIButton) {
         self.getLanguageBtnAction(sender)
     }
@@ -135,7 +138,7 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
                                 self?.notificationLbl.text = list?[(self?.notifCounter)!].message
                 }, completion: nil)
             notifCounter = notifCounter + 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [unowned self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { () in
                 self.showNotifications()
             }
         }
