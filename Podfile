@@ -11,7 +11,7 @@ target 'ECGame' do
     pod 'Toast-Swift', '~> 4.0.0'
     pod 'SwiftyJSON', '~> 4.0'  
     pod 'Kingfisher'
-    pod 'Alamofire'
+    pod 'Alamofire', '4.9.1'
     pod "SimpleAnimation"    
     pod 'ObjectMapper'
     pod 'DropDown', '2.3.4'

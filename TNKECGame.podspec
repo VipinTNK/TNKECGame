@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TNKECGame'
-  s.version          = '1.8.5'
+  s.version          = '1.8.6'
   s.summary          = 'This is betting app for casino users'
  
   s.description      = 'User can bet on multiple option in casino like first digit, last digit and enjoy the quality time in casino'
@@ -27,6 +27,6 @@ s.dependency 'ObjectMapper'
 s.dependency 'DropDown', '2.3.4'
 s.dependency 'AMPopTip'
 s.dependency 'Charts'
-s.dependency 'Alamofire'
+s.dependency 'Alamofire', '4.9.1'
  
 end
