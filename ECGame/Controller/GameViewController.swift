@@ -875,6 +875,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         self.roadMapView.winningsTitleLbl.text = buttonTitle.rmTotalWiningTitletString.localiz()
         self.roadMapView.userTitleLbl.text = buttonTitle.rmNoOfuserTitleString.localiz()
         self.roadMapView.resultTitleLbl.text = buttonTitle.rmResultsTitleString.localiz()
+        self.roadMapView.roadMapTableView.reloadData()
     }
     
     func updateFlagForSelectedLanguage() -> Void {
