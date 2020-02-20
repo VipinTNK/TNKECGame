@@ -87,36 +87,36 @@ extension PreviewTableCell {
         
        
         if collectionView == numberCollectionView {
-            cell.lbl1.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[0]
-            cell.lbl2.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[1]
-            cell.lbl3.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[2]
-            cell.lbl4.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[3]
-            cell.lbl5.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[4]
-            cell.lbl6.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[5]
+            cell.lbl1.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[0].localiz()
+            cell.lbl2.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[1].localiz()
+            cell.lbl3.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[2].localiz()
+            cell.lbl4.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[3].localiz()
+            cell.lbl5.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[4].localiz()
+            cell.lbl6.text = collectionDataArray[3].itemArray?[indexPath.item].valueArray[5].localiz()
             
         } else if collectionView == bigSmallCollectionView {
-            cell.lbl1.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[0]
-            cell.lbl2.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[1]
-            cell.lbl3.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[2]
-            cell.lbl4.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[3]
-            cell.lbl5.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[4]
-            cell.lbl6.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[5]
+            cell.lbl1.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[0].localiz()
+            cell.lbl2.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[1].localiz()
+            cell.lbl3.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[2].localiz()
+            cell.lbl4.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[3].localiz()
+            cell.lbl5.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[4].localiz()
+            cell.lbl6.text = collectionDataArray[0].itemArray![indexPath.item].valueArray[5].localiz()
              
         } else if collectionView == evenOddCollectionView {
-            cell.lbl1.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[0]
-            cell.lbl2.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[1]
-            cell.lbl3.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[2]
-            cell.lbl4.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[3]
-            cell.lbl5.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[4]
-            cell.lbl6.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[5]
+            cell.lbl1.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[0].localiz()
+            cell.lbl2.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[1].localiz()
+            cell.lbl3.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[2].localiz()
+            cell.lbl4.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[3].localiz()
+            cell.lbl5.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[4].localiz()
+            cell.lbl6.text = collectionDataArray[1].itemArray![indexPath.item].valueArray[5].localiz()
             
         } else if collectionView == upmidhighCollectionView {
-            cell.lbl1.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[0]
-            cell.lbl2.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[1]
-            cell.lbl3.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[2]
-            cell.lbl4.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[3]
-            cell.lbl5.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[4]
-            cell.lbl6.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[5]
+            cell.lbl1.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[0].localiz()
+            cell.lbl2.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[1].localiz()
+            cell.lbl3.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[2].localiz()
+            cell.lbl4.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[3].localiz()
+            cell.lbl5.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[4].localiz()
+            cell.lbl6.text = collectionDataArray[2].itemArray![indexPath.item].valueArray[5].localiz()
              
         } else {
             cell.lbl1.text = ""

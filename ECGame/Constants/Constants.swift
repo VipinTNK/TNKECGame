@@ -183,7 +183,6 @@ struct Stock {
     static let fiveMinutes = "5 Minute Loop"
     static let selectBTU = "Select BTU"
     static let selectTime = "Select Time"
-    
 }
 
 //MARK: - Button Title
@@ -225,8 +224,6 @@ struct UserDefaultsKey {
     static let isLanguageDefinded = "customLanguage"
     static let isMusicOnOff = "musicOnOff"
     static let isProfileShow = "ProfileShow"
-    
-
 }
 
 // MARK: - AlertField Names
@@ -259,6 +256,7 @@ struct AlertField {
     static let emptyTimeLoopString = "Please select time loop related to stock"
     static let selectFromDateString = "Please select \'From Date\'"
     static let selectToDateString = "Please select \'To Date\'"
+    static let profileUpdateString = "Your profile has been updated successfully"
 }
 
 //MARK:- Gender
@@ -418,8 +416,8 @@ struct chips {
 //Class ends here
 
 /*
-Chinese - zhHans
-English - en
-Lao - lao
-Thai - th
-*/
+ Chinese - zhHans
+ English - en
+ Lao - lao
+ Thai - th
+ */

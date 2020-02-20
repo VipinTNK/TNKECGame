@@ -102,6 +102,7 @@
 "Rolling" = "流水：";
 "Profile" = "账户：";
 "Save" = "保存";
+"Your profile has been updated successfully" = "您的个人资料已成功更新";
 //MARK: - Current Bet -
 "Current Bet" = "当前投注";
 "Bet Id" = "投注编号";
@@ -174,3 +175,10 @@
 "Close" = "关";
 "Select the road map for directly onboarding" = "选择要直接入职的路线图";
 "Stock Name - " = "股票名称 - ";
+"S"= "小";
+"B"= "大";
+"E"= "双";
+"O"= "单";
+"U"= "上";
+"L"= "下";
+"M"= "中";

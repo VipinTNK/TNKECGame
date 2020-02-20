@@ -88,27 +88,36 @@ class UserProfileViewController: UIViewController,UIGestureRecognizerDelegate, U
         getUserProfileDetailsAPI()
     }
 
-    func updateProfileViewWithData(userDatObject : UserProfileData?) {
+    func updateProfileViewWithData(userDatObject : UserProfileDataModel?, isFettchingProfile:Bool) {
         userNameTextField.text = userDatObject?.name
-        userGenderTextField.text = "Pending"
+        if userDatObject?.gender == 0 {
+            userGenderTextField.text = "Male"
+        } else {
+            userGenderTextField.text = "Female"
+        }
         userEmailTextField.text = userDatObject?.email
         userCountryTextField.text =  userDatObject?.country
-        userIDLabel.text = userDatObject!.name+": ID "+userDatObject!.userApiId
-        user_balanceLabel.text = userDatObject!.userBalance.createCurrencyString()
-        userStatusLabel.text = userDatObject?.lastActivity
-        if userDatObject!.isBanned {
-            user_PrimeMem_ImageView.isHidden = false
+       
+        if isFettchingProfile {
+            userIDLabel.text = userDatObject!.name+": ID "+userDatObject!.userApiId
+            user_balanceLabel.text = userDatObject!.userBalance.createCurrencyString()
+            userStatusLabel.text = userDatObject?.lastActivity
+            if userDatObject!.isBanned {
+                user_PrimeMem_ImageView.isHidden = false
+            } else {
+                user_PrimeMem_ImageView.isHidden = true
+            }
+            if userDatObject!.gender == 0 {
+                userGenderTextField.text = arrayOfGender[0]
+            } else if userDatObject!.gender == 1 {
+                userGenderTextField.text = arrayOfGender[1]
+            } else {
+               userGenderTextField.text = arrayOfGender[2]
+            }
+            rollingTextField.text = userDatObject!.rollingAmount.createCurrencyString()
         } else {
-            user_PrimeMem_ImageView.isHidden = true
+            self.showAlertWith(title:AlertField.appTitle.localiz(), message:AlertField.profileUpdateString.localiz())
         }
-        if userDatObject!.gender == 0 {
-            userGenderTextField.text = arrayOfGender[0]
-        } else if userDatObject!.gender == 1 {
-            userGenderTextField.text = arrayOfGender[1]
-        } else {
-           userGenderTextField.text = arrayOfGender[2]
-        }
-        rollingTextField.text = userDatObject!.rollingAmount.createCurrencyString()
     }
 
     //MARK:- IBAction
@@ -165,10 +174,10 @@ class UserProfileViewController: UIViewController,UIGestureRecognizerDelegate, U
       self.makeToastInBottomWithMessage(AlertField.emptyRollingString)
          return
       }
-        self.userProfile?.data![0].name = userNameTextField.text!
-        self.userProfile?.data![0].country = userCountryTextField.text!
-        self.userProfile?.data![0].email = userEmailTextField.text!
-        updateUserProfileDetailsAPI(userDatObject: self.userProfile?.data![0])
+        self.userProfile?.data!.name = userNameTextField.text!
+        self.userProfile?.data!.country = userCountryTextField.text!
+        self.userProfile?.data!.email = userEmailTextField.text!
+        updateUserProfileDetailsAPI(userDatObject: self.userProfile?.data!)
     }
     
     //MARK:- PickerView Method
@@ -247,11 +256,11 @@ extension UserProfileViewController : UIPickerViewDelegate,UIPickerViewDataSourc
         switch activeTextField{
             case 1:
                 userGenderTextField.text =  arrayOfGender[row]
-                self.userProfile?.data![0].gender = row
+                self.userProfile?.data!.gender = row
                 break
             case 2:
                 userCountryTextField.text = arrayOfcountries[row]
-                self.userProfile?.data![0].country = arrayOfcountries[row]
+                self.userProfile?.data!.country = arrayOfcountries[row]
                 break
             default:
                 userGenderTextField.text =  arrayOfGender[row]
@@ -334,10 +343,13 @@ extension UserProfileViewController {
                     return
                 }
                 self.userProfile = Mapper<UserProfileModel>().map(JSONObject: jsonValue )
-                
+                let jsonData = try! JSONSerialization.data(withJSONObject: jsonValue, options: .prettyPrinted)
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    print(jsonString)
+                }
                 if  self.userProfile?.code == 200, self.userProfile!.status {
-                    if let list = self.userProfile?.data, !list.isEmpty {
-                        self.updateProfileViewWithData(userDatObject: self.userProfile?.data![0])
+                    if let userDetails = self.userProfile?.data {
+                        self.updateProfileViewWithData(userDatObject: userDetails, isFettchingProfile: true)
                    }
                 }
                 self.dismissHUD(isAnimated: true)
@@ -347,7 +359,7 @@ extension UserProfileViewController {
         }
     }
     
-    func updateUserProfileDetailsAPI(userDatObject : UserProfileData?) {
+    func updateUserProfileDetailsAPI(userDatObject : UserProfileDataModel?) {
         if NetworkManager.sharedInstance.isInternetAvailable(){
             self.showHUD(progressLabel: AlertField.loaderString)
             let stateURL : String = UrlName.baseUrl + UrlName.updateUserProfileUrl + UrlName.API_Token
@@ -358,13 +370,18 @@ extension UserProfileViewController {
                     return
                 }
                 self.userProfile = Mapper<UserProfileModel>().map(JSONObject: jsonValue )
+                let jsonData = try! JSONSerialization.data(withJSONObject: jsonValue, options: .prettyPrinted)
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    print(jsonString)
+                }
                 if  self.userProfile?.code == 200, self.userProfile!.status {
-                    if let list = self.userProfile?.data, !list.isEmpty {
-                        self.updateProfileViewWithData(userDatObject: self.userProfile?.data![0])
+                    if let userDetails = self.userProfile?.data {
+                        self.updateProfileViewWithData(userDatObject: userDetails, isFettchingProfile: false)
+                    } else {
+                        self.userProfile?.data = userDatObject
                     }
                 } else {
-                    self.userProfile?.data! = []
-                    self.userProfile?.data?.append(userDatObject!)
+                     self.userProfile?.data = userDatObject
                 }
                 self.dismissHUD(isAnimated: true)
             })

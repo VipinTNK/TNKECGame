@@ -102,6 +102,7 @@
 "Rolling" = "โรลลิ่ง";
 "Profile" = "ข้อมูลส่วนตัว";
 "Save" = "บันทึก";
+"Your profile has been updated successfully" = "โปรไฟล์ของคุณได้รับการปรับปรุงเรียบร้อยแล้ว";
 //MARK: - Current Bet -
 "Current Bet" = "การเดิมพันปัจจุบัน";
 "Bet Id" = "ตัวระบุการเดิมพัน";
@@ -174,3 +175,10 @@
 "Close" = "ปิด";
 "Select the road map for directly onboarding" = "เลือกแผนที่ถนนสำหรับการลงทะเบียนโดยตรง";
 "Stock Name - " = "ชื่อสต็อค - ";
+"S"= "ส";
+"B"= "ข";
+"E"= "อี";
+"O"= "ท";
+"U"= "อู";
+"L"= "ล";
+"M"= "ม";

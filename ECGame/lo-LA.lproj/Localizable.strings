@@ -102,6 +102,7 @@
 "Rolling" = "ມ້ວນ";
 "Profile" = "ຂໍ້ມູນ";
 "Save" = "ບັນທຶກ";
+"Your profile has been updated successfully" = "ໂປຼໄຟລ໌ຂອງທ່ານໄດ້ຖືກອັບເດດແລ້ວຢ່າງ ສຳ ເລັດຜົນ";
 //MARK: - Current Bet -
 "Current Bet" = "ການເດີມພັນໃນປະຈຸບັນ";
 "Bet Id" = "ຕົວລະບຸການເດີມພັນ";
@@ -174,3 +175,10 @@
 "Close" = "ປິດ";
 "Select the road map for directly onboarding" = "ເລືອກແຜນທີ່ເສັ້ນທາງ ສຳ ລັບລົງເຮືອໂດຍກົງ";
 "Stock Name - " = "ຊື່ຫຸ້ນ - ";
+"S"= "ສ";
+"B"= "ບ";
+"E"= "ອີ";
+"O"= "ອ";
+"U"= "ອູ";
+"L"= "ລ";
+"M"= "ມ";

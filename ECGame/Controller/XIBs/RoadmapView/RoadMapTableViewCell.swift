@@ -41,12 +41,12 @@ extension RoadMapTableViewCell {
         
         cell.lbl1.addPropertiesToLabel(borderColor: .white, borderWidth: 0, bgColor: .white, cornerRadius: 4,  maskBound: true)
         
-        cell.lbl1.text = firstDigitItemArray[indexPath.item].valueArray[0]
-        cell.lbl2.text = firstDigitItemArray[indexPath.item].valueArray[1]
-        cell.lbl3.text = firstDigitItemArray[indexPath.item].valueArray[2]
-        cell.lbl4.text = firstDigitItemArray[indexPath.item].valueArray[3]
-        cell.lbl5.text = firstDigitItemArray[indexPath.item].valueArray[4]
-        cell.lbl6.text = firstDigitItemArray[indexPath.item].valueArray[5]
+        cell.lbl1.text = firstDigitItemArray[indexPath.item].valueArray[0].localiz()
+        cell.lbl2.text = firstDigitItemArray[indexPath.item].valueArray[1].localiz()
+        cell.lbl3.text = firstDigitItemArray[indexPath.item].valueArray[2].localiz()
+        cell.lbl4.text = firstDigitItemArray[indexPath.item].valueArray[3].localiz()
+        cell.lbl5.text = firstDigitItemArray[indexPath.item].valueArray[4].localiz()
+        cell.lbl6.text = firstDigitItemArray[indexPath.item].valueArray[5].localiz()
         
         if indexPath.item%2==0 {
             if cell.lbl1.text == "" {

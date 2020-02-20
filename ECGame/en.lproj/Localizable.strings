@@ -102,6 +102,7 @@
 "Rolling" = "Rolling:";
 "Profile" = "Profile";
 "Save" = "Save";
+"Your profile has been updated successfully" = "Your profile has been updated successfully";
 //MARK: - Current Bet -
 "Current Bet" = "Current Bet";
 "Bet Id" = "Bet Id";
@@ -174,3 +175,10 @@
 "Close" = "";
 "Select the road map for directly onboarding" = "Select the road map for directly onboarding";
 "Stock Name - " = "Stock Name - ";
+"S"= "S";
+"B"= "B";
+"E"= "E";
+"O"= "O";
+"U"= "U";
+"L"= "L";
+"M"= "M";

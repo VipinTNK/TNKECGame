@@ -11,7 +11,7 @@ import ObjectMapper
 
 class UserProfileModel: Mappable {
        var code = 0
-       var data : [UserProfileData]?
+       var data : UserProfileDataModel?
        var status = false
        var message = ""
        
@@ -27,31 +27,31 @@ class UserProfileModel: Mappable {
       }
    }
        
-   class UserProfileData: Mappable {
+   class UserProfileDataModel: Mappable {
        
-     var id = 0
-     var userId = 0
-     var name = ""
-     var userApiId = ""
-     var userBalance = 0
-     var email = ""
-     var userIp = ""
-     var password = ""
-     var api_token = ""
-     var lastLoginAt = ""
-     var lastIpLoginAt = ""
-     var lastActivity = ""
-     var remember_token = ""
-     var created_at = ""
-     var updated_at = ""
-     var userStatus = false
-     var webId = 0
-     var isBanned = false
-     var avatar = ""
-     var device  = ""
-     var country = ""
-     var gender = 0
-     var rollingAmount = 0
+    var id : Int = 0
+    var userId : Int = 0
+    var name : String = ""
+     var userApiId : String = ""
+     var userBalance : Int = 0
+     var email : String = ""
+     var userIp : String = ""
+     var password: String = ""
+     var api_token: String = ""
+     var lastLoginAt: String = ""
+     var lastIpLoginAt: String = ""
+     var lastActivity: String = ""
+     var remember_token: String = ""
+     var created_at: String = ""
+     var updated_at: String = ""
+    var userStatus : Bool = false
+    var webId : Int = 0
+    var isBanned : Bool = false
+     var avatar: String = ""
+     var device : String = ""
+     var country: String = ""
+     var gender : Int = 0
+    var rollingAmount : Int = 0
 
        
        required init?(map: Map) {

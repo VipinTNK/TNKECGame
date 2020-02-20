@@ -1545,7 +1545,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwu-Q4-6kx">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqe-3u-RJu">
                                         <rect key="frame" x="10" y="10" width="40" height="40"/>
@@ -1572,13 +1572,13 @@
                                 <constraints>
                                     <constraint firstItem="hqe-3u-RJu" firstAttribute="top" secondItem="qwu-Q4-6kx" secondAttribute="top" constant="10" id="7QR-U7-P2c"/>
                                     <constraint firstItem="qXt-O3-K5e" firstAttribute="top" secondItem="qwu-Q4-6kx" secondAttribute="top" constant="10" id="F8f-ku-cdX"/>
-                                    <constraint firstAttribute="height" constant="50" id="W9L-7Y-N5Q"/>
+                                    <constraint firstAttribute="height" constant="60" id="W9L-7Y-N5Q"/>
                                     <constraint firstItem="qXt-O3-K5e" firstAttribute="centerX" secondItem="qwu-Q4-6kx" secondAttribute="centerX" id="WPF-k5-n8L"/>
                                     <constraint firstItem="hqe-3u-RJu" firstAttribute="leading" secondItem="qwu-Q4-6kx" secondAttribute="leading" constant="10" id="ubB-vQ-fD6"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CLt-l2-4bO">
-                                <rect key="frame" x="0.0" y="60" width="667" height="308"/>
+                                <rect key="frame" x="0.0" y="70" width="667" height="305"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="StockListHeaderViewTableViewCell" rowHeight="58" id="S42-IG-fbx" customClass="StockListHeaderViewTableViewCell" customModule="ECGame" customModuleProvider="target">
@@ -1741,7 +1741,7 @@
                             <constraint firstAttribute="bottom" secondItem="PL0-HH-eKO" secondAttribute="bottom" id="kOT-md-rRh"/>
                             <constraint firstItem="PL0-HH-eKO" firstAttribute="top" secondItem="iuu-Ll-GGt" secondAttribute="top" id="o8u-eX-vIZ"/>
                             <constraint firstItem="y1H-3V-Aoz" firstAttribute="trailing" secondItem="qwu-Q4-6kx" secondAttribute="trailing" id="pQL-gp-JaE"/>
-                            <constraint firstItem="CLt-l2-4bO" firstAttribute="bottom" secondItem="y1H-3V-Aoz" secondAttribute="bottom" constant="-7" id="w34-JW-yyO"/>
+                            <constraint firstItem="CLt-l2-4bO" firstAttribute="bottom" secondItem="y1H-3V-Aoz" secondAttribute="bottom" id="w34-JW-yyO"/>
                             <constraint firstItem="CLt-l2-4bO" firstAttribute="trailing" secondItem="y1H-3V-Aoz" secondAttribute="trailing" id="xdA-aS-Q5g"/>
                             <constraint firstItem="PL0-HH-eKO" firstAttribute="leading" secondItem="iuu-Ll-GGt" secondAttribute="leading" id="zLm-9K-gTM"/>
                             <constraint firstItem="qwu-Q4-6kx" firstAttribute="top" secondItem="y1H-3V-Aoz" secondAttribute="top" id="zvV-f0-ESI"/>
@@ -2688,27 +2688,28 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="197-RS-LhP"/>
+                                    <constraint firstItem="pGD-IN-Txj" firstAttribute="centerX" secondItem="Edi-GL-pSy" secondAttribute="centerX" id="404-NB-8sa"/>
                                     <constraint firstItem="pGD-IN-Txj" firstAttribute="top" secondItem="Edi-GL-pSy" secondAttribute="top" constant="10" id="Fw7-9f-Ahe"/>
                                     <constraint firstItem="aFE-UU-Otw" firstAttribute="leading" secondItem="Edi-GL-pSy" secondAttribute="leading" constant="10" id="M9A-xv-ESH"/>
-                                    <constraint firstItem="pGD-IN-Txj" firstAttribute="centerX" secondItem="Edi-GL-pSy" secondAttribute="centerX" id="Od8-UZ-ULd"/>
                                     <constraint firstItem="aFE-UU-Otw" firstAttribute="top" secondItem="Edi-GL-pSy" secondAttribute="top" constant="10" id="t2R-X4-qmV"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFr-hb-Xg1">
-                                <rect key="frame" x="10" y="65" width="647" height="300"/>
+                                <rect key="frame" x="0.0" y="60" width="667" height="315"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="NFr-hb-Xg1" firstAttribute="trailing" secondItem="nWR-K2-hAS" secondAttribute="trailing" id="2Fd-LY-vUT"/>
+                            <constraint firstItem="NFr-hb-Xg1" firstAttribute="top" secondItem="Edi-GL-pSy" secondAttribute="bottom" id="54r-5l-FpF"/>
                             <constraint firstItem="nWR-K2-hAS" firstAttribute="trailing" secondItem="Edi-GL-pSy" secondAttribute="trailing" id="6oA-AK-zyO"/>
-                            <constraint firstAttribute="bottom" secondItem="NFr-hb-Xg1" secondAttribute="bottom" constant="10" id="E17-on-ksa"/>
                             <constraint firstAttribute="bottom" secondItem="pgY-0p-nRk" secondAttribute="bottom" id="HbM-fi-fcc"/>
                             <constraint firstItem="Edi-GL-pSy" firstAttribute="top" secondItem="nWR-K2-hAS" secondAttribute="top" id="Ith-yw-DVC"/>
-                            <constraint firstItem="NFr-hb-Xg1" firstAttribute="top" secondItem="Edi-GL-pSy" secondAttribute="bottom" constant="5" id="Yn6-et-Mfj"/>
+                            <constraint firstItem="NFr-hb-Xg1" firstAttribute="bottom" secondItem="nWR-K2-hAS" secondAttribute="bottom" id="LG6-8e-rGe"/>
+                            <constraint firstItem="NFr-hb-Xg1" firstAttribute="leading" secondItem="nWR-K2-hAS" secondAttribute="leading" id="QWf-rn-eZa"/>
+                            <constraint firstItem="nWR-K2-hAS" firstAttribute="top" secondItem="Edi-GL-pSy" secondAttribute="bottom" constant="-60" id="bDy-bD-gp0"/>
                             <constraint firstAttribute="trailing" secondItem="pgY-0p-nRk" secondAttribute="trailing" id="bcr-rC-KY2"/>
-                            <constraint firstItem="NFr-hb-Xg1" firstAttribute="leading" secondItem="nWR-K2-hAS" secondAttribute="leading" constant="10" id="c82-OR-LkL"/>
-                            <constraint firstAttribute="trailing" secondItem="NFr-hb-Xg1" secondAttribute="trailing" constant="10" id="hvg-EP-yE3"/>
                             <constraint firstItem="pgY-0p-nRk" firstAttribute="leading" secondItem="uQa-vk-PIk" secondAttribute="leading" id="l7s-ge-BcO"/>
                             <constraint firstItem="pgY-0p-nRk" firstAttribute="top" secondItem="uQa-vk-PIk" secondAttribute="top" id="mu6-pY-vkN"/>
                             <constraint firstItem="Edi-GL-pSy" firstAttribute="leading" secondItem="nWR-K2-hAS" secondAttribute="leading" id="qnI-R3-OJc"/>

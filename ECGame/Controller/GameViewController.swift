@@ -766,7 +766,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
                 self?.notificationLbl.text = list?[(self?.notifCounter)!].message
             }, completion: nil)
             notifCounter = notifCounter + 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [unowned self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { () in
                 self.showNotifications()
             }
         }
