@@ -55,24 +55,16 @@ class RulesViewController: UIViewController, WKUIDelegate, UIApplicationDelegate
     func openUrl() {
         let url = URL (string: requestURLString)
         let request = URLRequest(url: url!)
+        self.showHUD(progressLabel: AlertField.loaderString)
         webView.load(request)
-    }
-    func showActivityIndicator(show: Bool) {
-        if show {
-            self.showHUD(progressLabel: AlertField.loaderString)
-        } else {
-            self.dismissHUD(isAnimated: show)
-        }
     }
     
     //MARK:- WKWebView Delegate
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        showActivityIndicator(show: false)
+         self.dismissHUD(isAnimated: false)
     }
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        showActivityIndicator(show: true)
-    }
+    
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        showActivityIndicator(show: false)
+         self.dismissHUD(isAnimated: false)
     }
 }

@@ -35,7 +35,6 @@ class StockListViewController: UIViewController,UIGestureRecognizerDelegate {
         stockHeader.livePriceTitle.text = StockListScreen.livePriceString.localiz().uppercased()
         stockHeader.referenceTitle.text = StockListScreen.referenceString.localiz().uppercased()
         self.stockListTableView.tableHeaderView = stockHeader
-        
     }
     @objc func refreshStockTableView()
     {
