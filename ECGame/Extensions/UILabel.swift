@@ -63,8 +63,8 @@ extension UIButton {
         self.sizeToFit()
     }
     
-    func renderColorOnImage(_ imageString : String, imageColor : UIColor) {
-        let originalImage = UIImage(named: imageString)
+    func renderColorOnImage(_ imageString : String, imageColor : UIColor, viewC: GameViewController) {
+        let originalImage = UIImage.init(named: imageString, in: Bundle.init(for: viewC.classForCoder), compatibleWith: nil)
         let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
         self.setImage(tintedImage, for: .normal)
         self.tintColor = imageColor
