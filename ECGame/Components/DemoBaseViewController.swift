@@ -360,7 +360,6 @@ extension DemoBaseViewController: UITableViewDelegate, UITableViewDataSource {
             
             self.optionTapped(self.options[indexPath.row])
         }
-        
     }
 }
 

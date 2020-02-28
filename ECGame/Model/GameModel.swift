@@ -12,10 +12,10 @@ import ObjectMapper
 class RoadmapModel: Mappable {
     
     var code = 0
-    var data : [RoadmapDataModel]?
     var status = false
     var message = ""
-    
+    var data : [RoadmapDataModel]?
+ 
     required init?(map: Map) {
         //
     }
@@ -33,7 +33,7 @@ class RoadmapDataModel: Mappable {
     var totalWinning = 0
     var totalUsers = 0
     var result = 0
-    var roadMap : [RoadmapDataObjectModel]?
+    var roadMap : [RoadmapStockTypeModel]?
     
     required init?(map: Map) {
         //
@@ -44,6 +44,25 @@ class RoadmapDataModel: Mappable {
         totalUsers <- map["totalUsers"]
         result <- map["result"]
         roadMap <- map["roadMap"]
+    }
+}
+
+class RoadmapStockTypeModel: Mappable {
+
+    var status = ""
+    var stockCategory = ""
+    var stockName = ""
+    var stockData : [RoadmapDataObjectModel]?
+    
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        stockName <- map["stockName"]
+        stockData <- map["stockData"]
+        stockCategory <- map["stockCategory"]
+        status <- map["status"]
     }
 }
 
@@ -70,8 +89,10 @@ class RoadmapDataObjectModel: Mappable {
         gameId <- map["gameId"]
         flag <- map["flag"]
         PT <- map["PT"]
+        writetime <- map["writetime"]
     }
 }
+
 
 //MARK: - Current Bet List
 class CurrentBetListModel: Mappable {
@@ -391,5 +412,35 @@ class FirstDigitItems: Mappable {
     
             func mapping(map: Map) {
                itemArray <- map["itemArray"]
+    }
+}
+//CurrentBet Result Model
+class CurrentBetResultModel: Mappable {
+    
+    var code = 0
+    var data : [CurrentBetResultDataModel]?
+    var status = false
+    var message = ""
+    
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        code <- map["code"]
+        status <- map["status"]
+        message <- map["message"]
+        data <- map["data"]
+   }
+}
+
+class CurrentBetResultDataModel: Mappable {
+    
+    var results = 0
+    required init?(map: Map) {
+        //
+    }
+    func mapping(map: Map) {
+        results <- map["result"]
     }
 }

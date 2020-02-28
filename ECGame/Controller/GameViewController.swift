@@ -22,12 +22,11 @@ private class CubicLineSampleFillFormatter: IFillFormatter {
 
 class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, menuOpen, LanguageDelegate {
    
-    
-   
     //MARK:- IBOutlet
     @IBOutlet var chartView: LineChartView!
     @IBOutlet weak var chipsCollectionView : UICollectionView!
     @IBOutlet var circleView: UIView!
+    @IBOutlet var stripSelectedView: UIView!
     @IBOutlet var BetInterfaceView: UIView!
     @IBOutlet var BetClearConfirmView: UIView!
     @IBOutlet weak var clearButton: UIButton!
@@ -60,12 +59,14 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     @IBOutlet weak var lowButton: UIButton!
     @IBOutlet weak var midButton: UIButton!
     @IBOutlet weak var oddButton: UIButton!
+    @IBOutlet weak var tieButton: UIButton!
     @IBOutlet weak var evenButton: UIButton!
-    
+    @IBOutlet weak var tieButtonWidthContraint: NSLayoutConstraint!
     //Notification component
     @IBOutlet weak var notificationBgView: UIView!
     @IBOutlet weak var notificationLbl: UILabel!
     @IBOutlet weak var userCreditLbl: UILabel!
+    @IBOutlet weak var bellButton: UIButton!
     
     //MARK:- Variables -
     
@@ -86,17 +87,18 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     var stockTimerModel : StockTimerModel?
     var storeBetModel : StoreBetModel?
     var notificationModel : NotificationModel?
+    var currentBetResultModel : CurrentBetResultModel?
     var gameBetRuleString = ""
     var betDigitString = BetDigit.firstdigit      // First Digit, Last Digit ...
     var digitTypeString = ""     // Big, Small, even ...
-    var selectedStockId = 7
+    var selectedStockId = ""
     var timeloop = 60
     var timer: Timer?
     var notifCounter = 0
     var selelctedRow = -1
     let popTip = PopTip()
     var updateLocaleClosure : (() -> Void)?
-    
+     
     //MARK: - View life -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,8 +137,6 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         //Show Loading
         self.showHUD(progressLabel: AlertField.loaderString)
         self.getRoadmapDataFromServer(stockID: selectedStockId)
-        //Add properties in notificationView
-        //self.notificationBgView.setCornerRadiusOfView(cornerRadiusValue: 10)
     }
        
     func loadBasicView() {
@@ -148,15 +148,20 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         self.circleView.isHidden = false
         self.numberView.isHidden = true
         self.gamingLbl.text = NavigationTitle.gamingString.localiz()
-        self.numberFDButton.setmultipleLineTitle(titleString: buttonTitle.numberFirstDigitString.localiz())
-        self.numberLDButton.setmultipleLineTitle(titleString: buttonTitle.numberLastDigitString.localiz())
-        self.numberTDButton.setmultipleLineTitle(titleString: buttonTitle.numberTwoDigitString.localiz())
-        self.numberBDButton.setmultipleLineTitle(titleString: buttonTitle.numberBothDigitString.localiz()) //SUM
-        self.FDButton.setmultipleLineTitle(titleString: buttonTitle.firstDigitString.localiz())
-        self.LDButton.setmultipleLineTitle(titleString: buttonTitle.lastDigitString.localiz())
-        self.TDButton.setmultipleLineTitle(titleString: buttonTitle.twoDigitString.localiz())
-        self.BDButton.setmultipleLineTitle(titleString: buttonTitle.bothDigitString.localiz())
-        self.numberButton.setmultipleLineTitle(titleString: buttonTitle.numberDigitString.localiz())
+        self.numberFDButton.setmultipleLineTitle(titleString: buttonTitle.numberFirstDigitString.localiz().uppercased())
+        self.numberLDButton.setmultipleLineTitle(titleString: buttonTitle.numberLastDigitString.localiz().uppercased())
+        self.numberTDButton.setmultipleLineTitle(titleString: buttonTitle.numberTwoDigitString.localiz().uppercased())
+        self.numberBDButton.setmultipleLineTitle(titleString: buttonTitle.numberBothDigitString.localiz().uppercased())
+        self.FDButton.setmultipleLineTitle(titleString: buttonTitle.firstDigitString.localiz().uppercased())
+        self.LDButton.setmultipleLineTitle(titleString: buttonTitle.lastDigitString.localiz().uppercased())
+        self.TDButton.setmultipleLineTitle(titleString: buttonTitle.twoDigitString.localiz().uppercased())
+        self.BDButton.setmultipleLineTitle(titleString: buttonTitle.bothDigitString.localiz().uppercased())
+        self.numberButton.setmultipleLineTitle(titleString: buttonTitle.numberDigitString.localiz().uppercased())
+        self.FDButton.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnSkyColor)
+        self.LDButton.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnGreenColor)
+        self.TDButton.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnYellowColor)
+        self.BDButton.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnBlueColor)
+        self.numberButton.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnVoiletColor)
         //Digit btn
         self.bigButton.setTitle(buttonTitle.bigBtnString.localiz(), for: .normal)
         self.smallButton.setTitle(buttonTitle.smallBtnString.localiz(), for: .normal)
@@ -186,14 +191,6 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
 
     func setdefaultStock() -> Void {
-        /*selectedStockId = 7
-        timeloop = 60
-        self.stockLbl.text = Stock.CryptoCurrency.localiz()
-        self.BTULbl.text = Stock.BTCUSDT.localiz()
-        self.timeLbl.text = Stock.oneMinutes.localiz()
-        appDelegate.selectedStockname = Stock.CryptoCurrency
-        appDelegate.selectedBTUName = Stock.BTCUSDT
-        appDelegate.selectedTimeLoop = Stock.oneMinutes */
         
         self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
         self.BTULbl.text = appDelegate.sharedInstance.selectedBTUName.localiz()
@@ -267,6 +264,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     @IBAction func oddBtnClicked(_ sender: UIButton) {
         self.getoddBtnAction(sender)
     }
+    @IBAction func tieBtnClicked(_ sender: UIButton) {
+        self.gettieBtnAction(sender)
+    }
     @IBAction func evenBtnClicked(_ sender: UIButton) {
         self.getevenBtnAction(sender)
     }
@@ -298,7 +298,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     func getmusicBtnAction(sender : UIButton)  {
         self.navigationController?.popViewController(animated: true)
     }
-    func getLaunguageChnageBtnAction(sender : UIButton)  {
+    func getLaunguageChnageBtnAction(sender : UIButton) {
         //Added code for pods
         let bundle = self.initialiseBundle(ClassString: LanguageView.className())
         languagePopupView = bundle.loadNibNamed(LanguageView.className(), owner: self, options: nil)?[0] as! LanguageView
@@ -334,22 +334,31 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     // Digit IBActions Methods
     func getfisrtDigitBtnAction(_ sender: UIButton) {
         betDigitString = BetDigit.firstdigit
-        circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnSkyColor)
+        tieButtonWidthContraint.constant = 0
+        //circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnSkyColor)
+        stripSelectedView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnSkyColor)
     }
     func getlastDigitBtnAction(_ sender: UIButton) {
         betDigitString = BetDigit.lastdigit
-        circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnGreenColor)
+        tieButtonWidthContraint.constant = 0
+        //circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnGreenColor)
+        stripSelectedView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnGreenColor)
     }
     func gettowDigitBtnAction(_ sender: UIButton) {
         betDigitString = BetDigit.twodigit
-        circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnYellowColor)
+        tieButtonWidthContraint.constant = 81
+        //circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnYellowColor)
+        stripSelectedView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnYellowColor)
     }
     func getbothDigitBtnAction(_ sender: UIButton) {
         betDigitString = BetDigit.bothdigit
-        circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnBlueColor)
+        tieButtonWidthContraint.constant = 81
+        //circleView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnBlueColor)
+        stripSelectedView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnBlueColor)
     }
     func getnumberDigitBtnAction(_ sender: UIButton) {
-        numberView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnVoiletColor)
+        //numberView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnVoiletColor)
+        stripSelectedView.backgroundColor = CommonMethods.hexStringToUIColor(hex: Color.btnVoiletColor)
     }
     //Bet on particular methods
     func getbigBtnAction(_ sender: UIButton) {
@@ -374,6 +383,11 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
     func getoddBtnAction(_ sender: UIButton) {
         digitTypeString = BetDigit.odd
+        self.showTooltip(textMessage: Payout.bigSmall.localiz(), tempBtn: sender, tempView: circleView, popDirection: .up)
+        self.resetCircleViewButtonBackground(sender)
+    }
+    func gettieBtnAction(_ sender: UIButton) {
+        digitTypeString = BetDigit.tie
         self.showTooltip(textMessage: Payout.bigSmall.localiz(), tempBtn: sender, tempView: circleView, popDirection: .up)
         self.resetCircleViewButtonBackground(sender)
     }
@@ -463,17 +477,34 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
     //MARK: - Reset Button Background -
     func resetCircleViewButtonBackground(_ sender : UIButton)  {
+        
         for item in circleView.subviews {
             let tempBtn = item as? UIButton
-            print(tempBtn == sender)
-            tempBtn?.isSelected = (tempBtn == sender) ? true : false
+            //tempBtn?.isSelected = (tempBtn == sender) ? true : false
+            if tempBtn == sender {
+                tempBtn?.layer.borderWidth = 1.0
+                tempBtn?.layer.borderColor = self.stripSelectedView.backgroundColor?.cgColor
+            }
+            else {
+                tempBtn?.layer.borderWidth = 0.0
+                tempBtn?.layer.borderColor = UIColor.clear.cgColor
+            }
         }
+       
     }
     func resetNumberViewButtonBackground(_ sender : UIButton)  {
+       
         for item in numberView.subviews {
             let tempBtn = item as? UIButton
-            print(tempBtn == sender)
-            tempBtn?.isSelected = (tempBtn == sender) ? true : false
+            //tempBtn?.isSelected = (tempBtn == sender) ? true : false
+            if tempBtn == sender {
+                tempBtn?.layer.borderWidth = 1.0
+                tempBtn?.layer.borderColor = self.stripSelectedView.backgroundColor?.cgColor
+            }
+            else {
+                tempBtn?.layer.borderWidth = 0.0
+                tempBtn?.layer.borderColor = UIColor.clear.cgColor
+            }
         }
     }
     //MARK: - Custom Methods -
@@ -551,8 +582,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     func toggleRoadMapView(isRoadmapExpanded : Bool) {
         if isRoadmapExpanded {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                self.roadMapView.frame.size.height = self.view.frame.size.height+10
+                self.roadMapView.frame.size.height = self.view.frame.size.height-self.chipsCollectionView.bounds.height
                 self.roadMapView.bottomTableViewContraint.constant = 20
+                self.roadMapView.setCornerRadiusOfView(cornerRadiusValue: 5)
             })
         } else {
             self.roadMapView.frame.size.height = self.view.frame.size.height/4.3
@@ -567,8 +599,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
   
     func refreshDataofRoadmapWithSelecetedType(type: Int) {
-
-        self.roadMapView.firstDigitTableArray = RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap!, withSelectedRoadmapType: type)
+        self.roadMapView.firstDigitTableArray = RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap![0].stockData!, withSelectedRoadmapType: type)
         self.roadMapView.roadMapTableView.reloadData()
     }
     
@@ -606,7 +637,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         dropDownObj.textColor = CommonMethods.hexStringToUIColor(hex: Color.dropdownTextColor)
         
         dropDownObj.selectionAction = { [unowned self] (index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)")
+            //print("Selected item: \(item) at index: \(index)")
             self.dropDownObj.hide()
             if self.dropDownObj.tag == 9 {
                 self.stockLbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz() //item.localiz()
@@ -627,33 +658,33 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
                 appDelegate.sharedInstance.selectedTimeLoop = appDelegate.sharedInstance.dropdownArray[index]
                 if self.stockLbl.text?.localiz() == Stock.CryptoCurrency.localiz() {
                     if self.timeLbl.text?.localiz() == Stock.oneMinutes.localiz() {
-                        self.selectedStockId = 7
+                        self.selectedStockId = "7"
                         self.timeloop = 60
                     }
                     else {
-                        self.selectedStockId = 6
+                        self.selectedStockId = "6"
                         self.timeloop = 300
                     }
                 }
                 else if self.stockLbl.text?.localiz() == Stock.USStock.localiz() {
-                    self.selectedStockId = 5
+                    self.selectedStockId = "5"
                     self.timeloop = 300
                 }
                 else if self.stockLbl.text?.localiz() == Stock.ChinaStock.localiz() {
                     if self.BTULbl.text == Stock.SH000001 {
-                        self.selectedStockId = 1
+                        self.selectedStockId = "1"
                         self.timeloop = 300
                     }
                     else if self.BTULbl.text == Stock.SZ399001 {
-                        self.selectedStockId = 4
+                        self.selectedStockId = "4"
                         self.timeloop = 300
                     }
                     else if self.BTULbl.text == Stock.SZ399415 {
-                        self.selectedStockId = 3
+                        self.selectedStockId = "3"
                         self.timeloop = 300
                     }
                     else if self.BTULbl.text == Stock.SH000300 {
-                        self.selectedStockId = 2
+                        self.selectedStockId = "2"
                         self.timeloop = 300
                     }
                 }
@@ -685,11 +716,8 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     func createTooltipforPayout() -> Void {
         
         popTip.backgroundColor = .red
-        popTip.bubbleColor = self.circleView.backgroundColor ?? .green //CommonMethods.hexStringToUIColor(hex: Color.btnGreenColor)
+        popTip.bubbleColor = self.stripSelectedView.backgroundColor ?? .green
         popTip.textColor = .white
-        popTip.layer.borderWidth = 1.0
-        popTip.layer.borderColor = UIColor.white.cgColor
-        popTip.layer.zPosition = 1
     }
     
     //MARK: - Create Charts -
@@ -702,25 +730,39 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
         chartView.maxHighlightDistance = 300
+        chartView.animate(xAxisDuration: 0.5, easingOption: .easeInCubic)
+        chartView.animate(yAxisDuration: 0.5, easingOption: .easeInCubic)
         let yAxis = chartView.leftAxis
         yAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size:12)!
         yAxis.setLabelCount(6, force: false)
         yAxis.labelTextColor = .white
         yAxis.labelPosition = .insideChart
         yAxis.axisLineColor = .white
-        chartView.rightAxis.enabled = false
+        chartView.rightAxis.enabled = true
         chartView.legend.enabled = false
         chartView.animate(xAxisDuration: 2, yAxisDuration: 2)
         chartView.backgroundColor = UIColor.clear
-        chartView.xAxis.drawAxisLineEnabled = true
+        chartView.xAxis.drawAxisLineEnabled = false
         chartView.xAxis.enabled = true
-        chartView.xAxis.drawLimitLinesBehindDataEnabled = false
         chartView.xAxis.gridColor = UIColor(red:220/255, green:220/255,blue:220/255,alpha:1)
         chartView.xAxis.gridLineWidth = 0.5
-        chartView.xAxis.drawGridLinesEnabled = true
+        chartView.xAxis.drawGridLinesEnabled = false
         chartView.xAxis.drawLabelsEnabled = true
-        chartView.xAxis.labelPosition = .bottom
-        updateChartData()
+        chartView.xAxis.labelPosition = .top
+        chartView.xAxis.labelTextColor = .white
+        chartView.xAxis.axisLineColor = .white
+        chartView.xAxis.drawLimitLinesBehindDataEnabled = true
+        chartView.xAxis.avoidFirstLastClippingEnabled = true
+        chartView.backgroundColor = UIColor.clear
+        let marker = BalloonMarker(color: UIColor(white: 180/255, alpha: 0.7),
+                                   font: .systemFont(ofSize: 11),
+                                   textColor: .white,
+                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
+        marker.chartView = chartView
+        marker.minimumSize = CGSize(width: 80, height: 40)
+        chartView.marker = marker
+        chartView.legend.form = .line
+        chartView.animate(xAxisDuration: 2.5)
     }
     
     func updateChartData() {
@@ -731,10 +773,19 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let formatter = LineChartFormatter()
+        var xDataPoints = [String]()
         let yVals1 = (0..<count).map { (i) -> ChartDataEntry in
             let val = graphArray![i].PT
-            return ChartDataEntry(x: Double(i), y: Double(val)!)
+            let date = dateFormatter.date(from:graphArray![i].writetime)
+            let formatingDate = getFormattedDate(date: date!, format: " HH:mm")
+            xDataPoints.append(formatingDate)
+            return ChartDataEntry(x: Double(i), y: Double(val)!, data: formatingDate)
         }
+        formatter.setValues(values: xDataPoints)
+        chartView.xAxis.valueFormatter = formatter
         let set1 = LineChartDataSet(entries: yVals1, label: "DataSet")
         set1.mode = .horizontalBezier
         set1.fillColor = UIColor(red:99/255, green:94/255,blue:154/255,alpha:1)
@@ -749,10 +800,9 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 9)!)
         data.setDrawValues(false)
         chartView.data = data
-        chartView.animate(xAxisDuration: 0.5, easingOption: .easeInCubic)
-        chartView.animate(yAxisDuration: 0.5, easingOption: .easeInCubic)
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.xAxis.drawAxisLineEnabled = false
+        chartView.xAxis.spaceMin = 0.9
     }
     
     //MARK:- Notification -
@@ -799,7 +849,7 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
         
         var closeTime = 0
         for item in self.stockTimerModel!.data! {
-            if item.stockId == selectedStockId {
+            if item.stockId == Int(selectedStockId) {
                 closeTime = item.closeTime
                 self.BetInterfaceView.isUserInteractionEnabled = (timerValue > (timeloop - closeTime )) ? false : true
                 self.BetClearConfirmView.isUserInteractionEnabled = (timerValue > (timeloop - closeTime)) ? false : true
@@ -811,6 +861,14 @@ class GameViewController: UIViewController, RoadMapDelegate, ChartViewDelegate, 
                 }
                 else {
                     betCloseView.removeFromSuperview()
+                    //print(timerValue - closeTime)
+                    if (timerValue - closeTime) == 20 || (timerValue - closeTime) == 180 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                            if !self.getElementFromUserdefaults(UserDefaultsKey.CurrentBetIDs).isEmpty {
+                                self.getCurrentBetResultAPI()
+                            }
+                        })
+                    }
                 }
                 break
             }
@@ -949,7 +1007,6 @@ extension GameViewController {
                 self.stockListModel = Mapper<StockListModel>().map(JSONObject: jsonValue)
                 if  self.stockListModel?.code == 200, self.stockListModel!.status {
                     if let list = self.stockListModel?.data, !list.isEmpty {
-                        print(list)
                     }
                 }
                 self.dismissHUD(isAnimated: true)
@@ -971,8 +1028,7 @@ extension GameViewController {
                 if  self.stockTimerModel?.code == 200, self.stockTimerModel!.status {
                     if let list = self.stockTimerModel?.data, !list.isEmpty {
                         for item in self.stockTimerModel!.data! {
-                            print(item.stockId)
-                            if item.stockId == self.selectedStockId {
+                            if item.stockId == Int(self.selectedStockId) {
                                 let tempValue = item.timer
                                 if tempValue == -1 {
                                     self.stockTimerLbl.font = self.stockTimerLbl.font.withSize(12)
@@ -999,33 +1055,32 @@ extension GameViewController {
         }
     }
     // API call for roadmap view
-    func getRoadmapDataFromServer(stockID : Int) {
+    func getRoadmapDataFromServer(stockID : String) {
         if NetworkManager.sharedInstance.isInternetAvailable(){
-            //self.showHUD(progressLabel: AlertField.loaderString)
-            let stateURL : String = UrlName.baseUrl + UrlName.roadMapUrl
-            let params = ["stockId" : stockID]  as [String : Any]
+            let stateURL : String = UrlName.baseUrl + UrlName.roadmapListUrl
+             let params = ["stockId" : stockID]  as [String : Any]
             NetworkManager.sharedInstance.commonNetworkCallWithHeader(header: [:], url: stateURL, method: .post, parameters: params, completionHandler: { (json, status) in
                 guard let jsonValue = json else {
                     self.dismissHUD(isAnimated: true)
                     return
                 }
-                self.roadMapModel = Mapper<RoadmapModel>().map(JSONObject: jsonValue )
+                self.roadMapModel = Mapper<RoadmapModel>().map(JSONObject: jsonValue)
                 
                 if  self.roadMapModel?.code == 200, self.roadMapModel!.status {
-                    if let list = self.roadMapModel?.data![0].roadMap, !list.isEmpty {
-                        self.graphArray = self.roadMapModel?.data?[0].roadMap
-                        self.roadMapModel?.data![0].roadMap = []
-                        self.roadMapModel?.data![0].roadMap = RoadmapManager.getLastElements(array: list, count: 30)
-                        self.roadMapView.firstDigitTableArray = RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap!, withSelectedRoadmapType: 1)
-                        self.roadMapView.lastDrawLbl.text = self.roadMapModel!.data![0].roadMap![(self.roadMapModel?.data![0].roadMap!.count)!-1].PT
+                   if let list = self.roadMapModel?.data![0].roadMap![0].stockData, !list.isEmpty {
+                    self.graphArray = self.roadMapModel?.data?[0].roadMap![0].stockData
+                        self.roadMapModel?.data![0].roadMap![0].stockData = []
+                        self.roadMapModel?.data![0].roadMap![0].stockData = RoadmapManager.getLastElements(array: list, count: 30)
+                    self.roadMapView.firstDigitTableArray = RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap![0].stockData!, withSelectedRoadmapType: 1)
+                    self.roadMapView.lastDrawLbl.text = self.roadMapModel!.data![0].roadMap![0].stockData![(self.roadMapModel?.data![0].roadMap![0].stockData?.count)!-1].PT
                         self.roadMapView.winningsLbl.text = String(self.roadMapModel!.data![0].totalWinning)
                         self.roadMapView.userLbl.text = String(self.roadMapModel!.data![0].totalUsers)
                         self.roadMapView.resultLbl.text = String(self.roadMapModel!.data![0].result)
-                        self.lastdrawnFDLbl.text = String(self.roadMapModel!.data![0].roadMap![(self.roadMapModel!.data![0].roadMap!.count)-1].no1)
-                        self.lastdrawnLDLbl.text = String(self.roadMapModel!.data![0].roadMap![(self.roadMapModel!.data![0].roadMap!.count)-1].no2)
+                    self.lastdrawnFDLbl.text = String(self.roadMapModel!.data![0].roadMap![0].stockData![(self.roadMapModel!.data![0].roadMap![0].stockData!.count)-1].no1)
+                    self.lastdrawnLDLbl.text = String(self.roadMapModel!.data![0].roadMap![0].stockData![(self.roadMapModel!.data![0].roadMap![0].stockData!.count)-1].no2)
                         self.roadMapView.roadMapTableView.reloadData()
                         self.updateChartData()
-                    }
+                    } 
                 }
                 self.dismissHUD(isAnimated: true)
             })
@@ -1052,6 +1107,15 @@ extension GameViewController {
                 if  self.storeBetModel?.code == 200, self.storeBetModel!.status {
                     if let list = self.storeBetModel?.data, !list.isEmpty {
                         self.makeToastInBottomWithMessage(AlertField.betDoneString)
+                        let currentBetId = list[0].betId
+                        if !self.getElementFromUserdefaults(UserDefaultsKey.CurrentBetIDs).isEmpty {
+                            let previousBetIds = self.getElementFromUserdefaults(UserDefaultsKey.CurrentBetIDs)
+                            let updatedBetIds = previousBetIds + "," + currentBetId
+                            UserDefaults.standard.setValue(updatedBetIds, forKey: UserDefaultsKey.CurrentBetIDs)
+                        }
+                        else {
+                            UserDefaults.standard.setValue(currentBetId, forKey: UserDefaultsKey.CurrentBetIDs)
+                        }
                     }
                 }
                 else {
@@ -1090,8 +1154,78 @@ extension GameViewController {
             //self.showNoInternetAlert()
         }
     }
+    //CurrentBet Result -
+    func getCurrentBetResultAPI() {
+        if NetworkManager.sharedInstance.isInternetAvailable(){
+            if self.getElementFromUserdefaults(UserDefaultsKey.CurrentBetIDs).isEmpty {
+                return
+            }
+            let betURL : String = UrlName.baseUrl + UrlName.currentBetResultUrl
+            let betIds = self.getElementFromUserdefaults(UserDefaultsKey.CurrentBetIDs)
+            let params = ["betId" : betIds]
+            print("Pararms = \(params)")
+            NetworkManager.sharedInstance.commonNetworkCallWithHeader(header: [:], url: betURL, method: .post, parameters: params, completionHandler: { (json, status) in
+                self.removeElementFromUserdefaults(UserDefaultsKey.CurrentBetIDs) //Remove saved bet Ids
+                guard let jsonValue = json else {
+                    self.dismissHUD(isAnimated: true)
+                    return
+                }
+                self.currentBetResultModel = Mapper<CurrentBetResultModel>().map(JSONObject: jsonValue)
+                if  self.currentBetResultModel?.code == 200, self.currentBetResultModel!.status {
+                    if let list = self.currentBetResultModel?.data, !list.isEmpty {
+                        //Update notification button color
+                       
+                        for items in list {
+                            print("=== \(items.results) ===")
+                            if items.results == 0 {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                    UIView.animate(withDuration: 1.0) {
+                                        self.bellButton.renderColorOnImage("notificationIcon", imageColor: CommonMethods.hexStringToUIColor(hex: Color.btnRedColor))
+                                    }
+                                })
+                            }
+                            else if items.results == 1 {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                    UIView.animate(withDuration: 1.0) {
+                                        self.bellButton.renderColorOnImage("notificationIcon", imageColor: CommonMethods.hexStringToUIColor(hex: Color.btnGreenColor))
+                                    }
+                                })
+                            }
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + Double(list.count)*2, execute: {
+                            UIView.animate(withDuration: 1.0) {
+                                self.bellButton.renderColorOnImage("notificationIcon", imageColor: CommonMethods.hexStringToUIColor(hex: Color.btnWhiteColor))
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    }
 }
 
+extension GameViewController {
+    
+    func getFormattedDate(date: Date, format: String) -> String {
+            let dateformat = DateFormatter()
+            dateformat.dateFormat = format
+            return dateformat.string(from: date)
+    }
+}
+
+@objc(LineChartFormatter)
+public class LineChartFormatter: NSObject, IAxisValueFormatter {
+    var names = [String]()
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return names[Int(value)]
+    }
+    public func setValues(values: [String]) {
+        self.names = values
+    }
+}
+
+//MARK: - Show Chart Tooltip -
 class PillMarker: MarkerImage {
     
     private (set) var color: UIColor

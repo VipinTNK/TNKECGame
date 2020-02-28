@@ -52,7 +52,7 @@
 "Both Digit" = "两位数";
 "Numbers" = "号码";
 "BIG" = "大";
-"SML" = "小";
+"SMALL" = "小";
 "ODD" = "单";
 "EVEN" = "双";
 "LOW" = "小";

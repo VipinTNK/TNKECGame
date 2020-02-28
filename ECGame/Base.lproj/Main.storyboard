@@ -225,78 +225,63 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZC-bZ-slP">
-                                <rect key="frame" x="404.5" y="75" width="261.5" height="225"/>
+                                <rect key="frame" x="404.5" y="75" width="261.5" height="235"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uo9-hu-ag2">
                                         <rect key="frame" x="0.0" y="0.0" width="261.5" height="49"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="drc-e0-QT7">
-                                                <rect key="frame" x="2" y="2" width="257" height="45"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="drc-e0-QT7">
+                                                <rect key="frame" x="8" y="4" width="245.5" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NM3-ud-VGQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="45" id="4FQ-8v-oc2"/>
-                                                            <constraint firstAttribute="height" constant="45" id="XgB-lk-Lhd"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="45"/>
+                                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="12"/>
-                                                        <state key="normal" title="First D" backgroundImage="firstD">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="First D">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="fisrtDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MHa-wW-Z2n"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czc-dc-kcL">
-                                                        <rect key="frame" x="53" y="0.0" width="45" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="45" id="1YB-2a-ApW"/>
-                                                            <constraint firstAttribute="width" constant="45" id="JM6-G4-twJ"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="49" y="0.0" width="49" height="45"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                        <state key="normal" title="Last D" backgroundImage="lastD">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="Last D">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="lastDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1sZ-by-bs0"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQg-dZ-Kwe">
-                                                        <rect key="frame" x="106" y="0.0" width="45" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="45" id="lzm-Ko-isj"/>
-                                                            <constraint firstAttribute="height" constant="45" id="sZy-LI-J6b"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="98" y="0.0" width="49.5" height="45"/>
+                                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                        <state key="normal" title="Two D" backgroundImage="twod">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="Two D">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="towDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dxh-AG-Ge5"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FJ-ey-dj7">
-                                                        <rect key="frame" x="159" y="0.0" width="45" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="45" id="cJn-Ka-FgL"/>
-                                                            <constraint firstAttribute="width" constant="45" id="gMx-8q-ef2"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="147.5" y="0.0" width="49" height="45"/>
+                                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                        <state key="normal" title="Both D" backgroundImage="bothD">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <state key="normal" title="Both D">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="bothDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NI6-li-gae"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM0-nJ-lg4">
-                                                        <rect key="frame" x="212" y="0.0" width="45" height="45"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="45" id="FaQ-EM-eaA"/>
-                                                            <constraint firstAttribute="width" constant="45" id="IPf-6H-mb9"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="196.5" y="0.0" width="49" height="45"/>
+                                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="9"/>
-                                                        <state key="normal" title="Numbers" backgroundImage="NumbersD">
+                                                        <state key="normal" title="Numbers">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -312,22 +297,36 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="49" id="EOm-9J-K9n"/>
-                                            <constraint firstItem="drc-e0-QT7" firstAttribute="top" secondItem="Uo9-hu-ag2" secondAttribute="top" constant="2" id="kyj-Yf-w2v"/>
-                                            <constraint firstAttribute="trailing" secondItem="drc-e0-QT7" secondAttribute="trailing" constant="2.5" id="u9c-cO-9KH"/>
-                                            <constraint firstItem="drc-e0-QT7" firstAttribute="leading" secondItem="Uo9-hu-ag2" secondAttribute="leading" constant="2" id="xCw-xW-bRp"/>
+                                            <constraint firstItem="drc-e0-QT7" firstAttribute="top" secondItem="Uo9-hu-ag2" secondAttribute="top" constant="4" id="kyj-Yf-w2v"/>
+                                            <constraint firstAttribute="trailing" secondItem="drc-e0-QT7" secondAttribute="trailing" constant="8" id="u9c-cO-9KH"/>
+                                            <constraint firstItem="drc-e0-QT7" firstAttribute="leading" secondItem="Uo9-hu-ag2" secondAttribute="leading" constant="8" id="xCw-xW-bRp"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8y6-rq-Lmu">
+                                        <rect key="frame" x="8" y="49" width="245.5" height="7"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="7" id="DOI-mN-l9n"/>
+                                        </constraints>
+                                    </view>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvT-Gy-EkV">
+                                        <rect key="frame" x="8" y="56" width="245.5" height="178"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="g4a-Ty-b07">
+                                            <rect key="frame" x="0.0" y="0.0" width="245.5" height="178"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="regular"/>
+                                    </visualEffectView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOq-4f-hdI">
-                                        <rect key="frame" x="51" y="64" width="160" height="164"/>
+                                        <rect key="frame" x="8" y="56" width="245.5" height="178"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWC-B4-S8l">
-                                                <rect key="frame" x="12" y="35" width="40" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="6tY-ML-ifu"/>
-                                                    <constraint firstAttribute="width" constant="40" id="M5v-Qp-MYm"/>
+                                                    <constraint firstAttribute="height" constant="60" id="KyZ-vu-3he"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="BIG" backgroundImage="circleBtnBg">
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="BIG">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -335,59 +334,21 @@
                                                     <action selector="bigBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z4R-G5-KKw"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mn-ff-z6P">
-                                                <rect key="frame" x="108" y="89" width="40" height="40"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V2h-0r-OjC">
+                                                <rect key="frame" x="122.5" y="0.0" width="1" height="60"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="D0K-uy-oSZ"/>
-                                                    <constraint firstAttribute="height" constant="40" id="LiR-Z6-SlC"/>
+                                                    <constraint firstAttribute="width" constant="1" id="9zw-1F-lFF"/>
+                                                    <constraint firstAttribute="height" constant="60" id="JVV-YD-D1C"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="EVE" backgroundImage="circleBtnBg">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                </state>
-                                                <state key="selected" backgroundImage="selectedDigit"/>
-                                                <connections>
-                                                    <action selector="evenBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XdF-AD-GGH"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FB-Zo-pUz">
-                                                <rect key="frame" x="60" y="62" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="IF0-DE-HNw"/>
-                                                    <constraint firstAttribute="height" constant="40" id="Joj-kX-OtC"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="MID" backgroundImage="circleBtnBg">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                </state>
-                                                <state key="selected" backgroundImage="selectedDigit"/>
-                                                <connections>
-                                                    <action selector="midBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xj0-pw-tRD"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AD7-6R-6iG">
-                                                <rect key="frame" x="108" y="35" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="Ig0-wj-69f"/>
-                                                    <constraint firstAttribute="width" constant="40" id="Om4-yL-3Dc"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="ODD" backgroundImage="circleBtnBg">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                </state>
-                                                <state key="selected" backgroundImage="selectedDigit"/>
-                                                <connections>
-                                                    <action selector="oddBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzi-A2-FKo"/>
-                                                </connections>
-                                            </button>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2c-S6-EXH">
-                                                <rect key="frame" x="12" y="89" width="40" height="40"/>
+                                                <rect key="frame" x="123.5" y="0.0" width="122" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="hfj-9h-Z59"/>
-                                                    <constraint firstAttribute="height" constant="40" id="zrg-ci-y3b"/>
+                                                    <constraint firstAttribute="height" constant="60" id="h4F-pX-QGy"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="SML" backgroundImage="circleBtnBg">
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="SMALL">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -395,14 +356,70 @@
                                                     <action selector="smallBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0L8-0L-agb"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7O-DC-Rn1">
-                                                <rect key="frame" x="60" y="10" width="40" height="40"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firstSeparator" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-uD-aju">
+                                                <rect key="frame" x="0.0" y="60" width="245.5" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="CM5-Ob-Kjy"/>
-                                                    <constraint firstAttribute="width" constant="40" id="NMk-p5-R3p"/>
+                                                    <constraint firstAttribute="height" constant="1" id="tHP-cZ-yBm"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="HIGH" backgroundImage="circleBtnBg">
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AD7-6R-6iG">
+                                                <rect key="frame" x="0.0" y="122" width="81.5" height="56"/>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="ODD">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <state key="selected" backgroundImage="selectedDigit"/>
+                                                <connections>
+                                                    <action selector="oddBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzi-A2-FKo"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yGJ-43-bu9">
+                                                <rect key="frame" x="81.5" y="121" width="1" height="57"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="ngI-cB-8aI"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLh-bv-wZY">
+                                                <rect key="frame" x="82.5" y="122" width="81" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="81" id="2nB-a0-Nep"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="TIE">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <state key="selected" backgroundImage="selectedDigit"/>
+                                                <connections>
+                                                    <action selector="tieBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ft-Vn-EFX"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V1c-4y-HmG">
+                                                <rect key="frame" x="163.5" y="121" width="1" height="57"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="hs9-Wr-XXT"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mn-ff-z6P">
+                                                <rect key="frame" x="164.5" y="122" width="81" height="56"/>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="EVE">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <state key="selected" backgroundImage="selectedDigit"/>
+                                                <connections>
+                                                    <action selector="evenBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XdF-AD-GGH"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7O-DC-Rn1">
+                                                <rect key="frame" x="0.0" y="61" width="81.5" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="sOZ-I2-tBw"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="HIGH">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -410,14 +427,44 @@
                                                     <action selector="highBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gpO-ys-S2q"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYD-yx-Kap">
-                                                <rect key="frame" x="60" y="114" width="40" height="40"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fv1-12-rG4">
+                                                <rect key="frame" x="81.5" y="60" width="1" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="Z3n-y5-FK7"/>
-                                                    <constraint firstAttribute="height" constant="40" id="jRr-AL-GWx"/>
+                                                    <constraint firstAttribute="width" constant="1" id="bTW-63-2uE"/>
+                                                    <constraint firstAttribute="height" constant="60" id="km3-AZ-xQi"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                                <state key="normal" title="LOW" backgroundImage="circleBtnBg">
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FB-Zo-pUz">
+                                                <rect key="frame" x="82.5" y="61" width="81" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="a9q-LU-Y9Y"/>
+                                                    <constraint firstAttribute="width" constant="81" id="eFM-IH-iSy"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="MID">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <state key="selected" backgroundImage="selectedDigit"/>
+                                                <connections>
+                                                    <action selector="midBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xj0-pw-tRD"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SC4-cG-QJb">
+                                                <rect key="frame" x="163.5" y="60" width="1" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="ocL-o0-uFy"/>
+                                                    <constraint firstAttribute="width" constant="1" id="yvC-hg-Yhn"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYD-yx-Kap">
+                                                <rect key="frame" x="163.5" y="61" width="82" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="4J1-R3-IRf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="16"/>
+                                                <state key="normal" title="LOW">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -425,43 +472,71 @@
                                                     <action selector="lowBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Hf-sF-K7N"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecondSeparator" translatesAutoresizingMaskIntoConstraints="NO" id="wmU-1S-lgZ">
+                                                <rect key="frame" x="0.0" y="121" width="245.5" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="6jy-gd-gns"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="0.5899812940140845" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Y7O-DC-Rn1" firstAttribute="top" secondItem="XOq-4f-hdI" secondAttribute="top" constant="10" id="1Ih-Y3-jel"/>
-                                            <constraint firstAttribute="width" constant="160" id="5eS-fJ-Lps"/>
-                                            <constraint firstItem="AD7-6R-6iG" firstAttribute="top" secondItem="XOq-4f-hdI" secondAttribute="top" constant="35" id="A2N-VG-OlA"/>
-                                            <constraint firstItem="iYD-yx-Kap" firstAttribute="centerX" secondItem="XOq-4f-hdI" secondAttribute="centerX" id="HVM-5q-D7V"/>
-                                            <constraint firstItem="4FB-Zo-pUz" firstAttribute="centerX" secondItem="XOq-4f-hdI" secondAttribute="centerX" id="IfW-LF-Yeb"/>
-                                            <constraint firstItem="Y7O-DC-Rn1" firstAttribute="centerX" secondItem="XOq-4f-hdI" secondAttribute="centerX" id="Jed-pR-Py0"/>
-                                            <constraint firstItem="FWC-B4-S8l" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" constant="12" id="KaV-0E-fkb"/>
-                                            <constraint firstAttribute="trailing" secondItem="4mn-ff-z6P" secondAttribute="trailing" constant="12" id="Llv-O7-EHj"/>
-                                            <constraint firstAttribute="height" constant="164" id="R3h-og-dJe"/>
-                                            <constraint firstItem="q2c-S6-EXH" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" constant="12" id="WqT-Oh-2wK"/>
-                                            <constraint firstItem="4FB-Zo-pUz" firstAttribute="centerY" secondItem="XOq-4f-hdI" secondAttribute="centerY" id="iYz-C5-DT5"/>
-                                            <constraint firstAttribute="trailing" secondItem="AD7-6R-6iG" secondAttribute="trailing" constant="12" id="j28-GV-Mob"/>
-                                            <constraint firstAttribute="bottom" secondItem="4mn-ff-z6P" secondAttribute="bottom" constant="35" id="jz1-hK-rZ4"/>
-                                            <constraint firstItem="FWC-B4-S8l" firstAttribute="top" secondItem="XOq-4f-hdI" secondAttribute="top" constant="35" id="oAc-YV-dOU"/>
-                                            <constraint firstAttribute="bottom" secondItem="iYD-yx-Kap" secondAttribute="bottom" constant="10" id="rzx-nU-IAr"/>
-                                            <constraint firstAttribute="bottom" secondItem="q2c-S6-EXH" secondAttribute="bottom" constant="35" id="wBe-T5-WFR"/>
+                                            <constraint firstItem="yGJ-43-bu9" firstAttribute="top" secondItem="wmU-1S-lgZ" secondAttribute="top" id="5Kb-Vl-hAe"/>
+                                            <constraint firstItem="KLh-bv-wZY" firstAttribute="leading" secondItem="yGJ-43-bu9" secondAttribute="trailing" id="5v0-tJ-FC2"/>
+                                            <constraint firstItem="FWC-B4-S8l" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" id="6wz-R1-VOK"/>
+                                            <constraint firstItem="V1c-4y-HmG" firstAttribute="leading" secondItem="KLh-bv-wZY" secondAttribute="trailing" id="7xI-2I-xBg"/>
+                                            <constraint firstItem="AD7-6R-6iG" firstAttribute="top" secondItem="wmU-1S-lgZ" secondAttribute="bottom" id="9Wt-Qo-peT"/>
+                                            <constraint firstAttribute="bottom" secondItem="4mn-ff-z6P" secondAttribute="bottom" id="AMq-rt-0ol"/>
+                                            <constraint firstItem="4mn-ff-z6P" firstAttribute="top" secondItem="wmU-1S-lgZ" secondAttribute="bottom" id="AOe-BS-PSU"/>
+                                            <constraint firstItem="iYD-yx-Kap" firstAttribute="top" secondItem="PLu-uD-aju" secondAttribute="bottom" id="AWX-02-1N2"/>
+                                            <constraint firstAttribute="bottom" secondItem="yGJ-43-bu9" secondAttribute="bottom" id="BBS-US-1Xo"/>
+                                            <constraint firstAttribute="trailing" secondItem="q2c-S6-EXH" secondAttribute="trailing" id="DTp-EI-VGi"/>
+                                            <constraint firstAttribute="bottom" secondItem="AD7-6R-6iG" secondAttribute="bottom" id="Eeq-Ux-X0T"/>
+                                            <constraint firstAttribute="trailing" secondItem="4mn-ff-z6P" secondAttribute="trailing" id="GAG-8U-UdF"/>
+                                            <constraint firstItem="Fv1-12-rG4" firstAttribute="leading" secondItem="Y7O-DC-Rn1" secondAttribute="trailing" id="GVz-3v-L6Q"/>
+                                            <constraint firstItem="Fv1-12-rG4" firstAttribute="top" secondItem="PLu-uD-aju" secondAttribute="top" id="HlA-Dn-7a3"/>
+                                            <constraint firstItem="V2h-0r-OjC" firstAttribute="centerX" secondItem="XOq-4f-hdI" secondAttribute="centerX" id="IeN-Zl-YDx"/>
+                                            <constraint firstItem="Y7O-DC-Rn1" firstAttribute="top" secondItem="PLu-uD-aju" secondAttribute="bottom" id="JOv-qd-zME"/>
+                                            <constraint firstItem="V2h-0r-OjC" firstAttribute="top" secondItem="XOq-4f-hdI" secondAttribute="top" id="LtT-f7-sgs"/>
+                                            <constraint firstItem="4FB-Zo-pUz" firstAttribute="centerX" secondItem="XOq-4f-hdI" secondAttribute="centerX" id="QEi-6E-TW5"/>
+                                            <constraint firstAttribute="bottom" secondItem="V1c-4y-HmG" secondAttribute="bottom" id="RQ9-WP-Mvc"/>
+                                            <constraint firstItem="q2c-S6-EXH" firstAttribute="leading" secondItem="V2h-0r-OjC" secondAttribute="trailing" id="UHY-RA-Z5L"/>
+                                            <constraint firstItem="4FB-Zo-pUz" firstAttribute="top" secondItem="PLu-uD-aju" secondAttribute="bottom" id="UZd-GL-xAe"/>
+                                            <constraint firstItem="iYD-yx-Kap" firstAttribute="leading" secondItem="4FB-Zo-pUz" secondAttribute="trailing" id="UgR-eE-GgE"/>
+                                            <constraint firstAttribute="trailing" secondItem="PLu-uD-aju" secondAttribute="trailing" id="VuG-06-L9O"/>
+                                            <constraint firstItem="q2c-S6-EXH" firstAttribute="top" secondItem="XOq-4f-hdI" secondAttribute="top" id="WRQ-gc-HFC"/>
+                                            <constraint firstItem="FWC-B4-S8l" firstAttribute="top" secondItem="XOq-4f-hdI" secondAttribute="top" id="XpC-yP-NUv"/>
+                                            <constraint firstItem="V1c-4y-HmG" firstAttribute="top" secondItem="wmU-1S-lgZ" secondAttribute="top" id="YH0-z4-arR"/>
+                                            <constraint firstItem="PLu-uD-aju" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" id="cIB-lN-uPY"/>
+                                            <constraint firstItem="V2h-0r-OjC" firstAttribute="leading" secondItem="FWC-B4-S8l" secondAttribute="trailing" id="e86-Kw-ew4"/>
+                                            <constraint firstAttribute="trailing" secondItem="wmU-1S-lgZ" secondAttribute="trailing" id="exZ-VQ-4vo"/>
+                                            <constraint firstItem="wmU-1S-lgZ" firstAttribute="top" secondItem="Y7O-DC-Rn1" secondAttribute="bottom" id="gsa-Jv-NjH"/>
+                                            <constraint firstItem="yGJ-43-bu9" firstAttribute="leading" secondItem="AD7-6R-6iG" secondAttribute="trailing" id="hoB-4K-NSr"/>
+                                            <constraint firstItem="4FB-Zo-pUz" firstAttribute="leading" secondItem="Fv1-12-rG4" secondAttribute="trailing" id="iEt-QD-p4k"/>
+                                            <constraint firstItem="SC4-cG-QJb" firstAttribute="top" secondItem="PLu-uD-aju" secondAttribute="top" id="iau-p6-YRZ"/>
+                                            <constraint firstItem="SC4-cG-QJb" firstAttribute="leading" secondItem="4FB-Zo-pUz" secondAttribute="trailing" id="jc2-BO-Om0"/>
+                                            <constraint firstItem="AD7-6R-6iG" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" id="kvr-8w-Nf9"/>
+                                            <constraint firstItem="wmU-1S-lgZ" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" id="lxb-ON-4t3"/>
+                                            <constraint firstItem="Y7O-DC-Rn1" firstAttribute="leading" secondItem="XOq-4f-hdI" secondAttribute="leading" id="tiQ-nF-cKN"/>
+                                            <constraint firstItem="PLu-uD-aju" firstAttribute="top" secondItem="FWC-B4-S8l" secondAttribute="bottom" id="u2H-YU-oLB"/>
+                                            <constraint firstItem="4mn-ff-z6P" firstAttribute="leading" secondItem="V1c-4y-HmG" secondAttribute="trailing" id="vnM-U7-yFI"/>
+                                            <constraint firstItem="KLh-bv-wZY" firstAttribute="centerX" secondItem="XOq-4f-hdI" secondAttribute="centerX" id="vzi-ex-FYu"/>
+                                            <constraint firstAttribute="bottom" secondItem="KLh-bv-wZY" secondAttribute="bottom" id="w8X-VO-Edx"/>
+                                            <constraint firstItem="KLh-bv-wZY" firstAttribute="top" secondItem="wmU-1S-lgZ" secondAttribute="bottom" id="wxr-Nd-fRr"/>
+                                            <constraint firstAttribute="trailing" secondItem="iYD-yx-Kap" secondAttribute="trailing" id="xYB-Ex-V9o"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
-                                                <integer key="value" value="80"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PZ-uX-oUe">
-                                        <rect key="frame" x="51" y="64" width="160" height="164"/>
+                                        <rect key="frame" x="8" y="56" width="245.5" height="178"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xRv-v9-Or4">
-                                                <rect key="frame" x="24" y="26" width="52" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="85"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="52" id="Fm7-x6-lwe"/>
-                                                    <constraint firstAttribute="height" constant="52" id="YK0-Ax-tp2"/>
+                                                    <constraint firstAttribute="height" constant="85" id="rxb-IB-uW7"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="9"/>
-                                                <state key="normal" title="0-9" backgroundImage="circleBtnBg">
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="15"/>
+                                                <state key="normal" title="0-9">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -469,14 +544,21 @@
                                                     <action selector="numberFirstDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DWf-eg-PKo"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KPQ-iU-eW7">
-                                                <rect key="frame" x="84" y="26" width="52" height="52"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WGA-R3-QLy">
+                                                <rect key="frame" x="122.5" y="0.0" width="1" height="85"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="52" id="3Za-s7-d09"/>
-                                                    <constraint firstAttribute="height" constant="52" id="p5A-PR-KTg"/>
+                                                    <constraint firstAttribute="height" constant="85" id="ODb-kG-jMN"/>
+                                                    <constraint firstAttribute="width" constant="1" id="esM-13-x6v"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="9"/>
-                                                <state key="normal" title="0-9" backgroundImage="circleBtnBg">
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KPQ-iU-eW7">
+                                                <rect key="frame" x="124.5" y="0.0" width="121" height="85"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="85" id="mgu-DC-5oM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="15"/>
+                                                <state key="normal" title="0-9">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" title="0-9" backgroundImage="selectedDigit"/>
@@ -484,14 +566,17 @@
                                                     <action selector="numberLastDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVO-DW-gup"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-Hd-t2Q">
-                                                <rect key="frame" x="24" y="86" width="52" height="52"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Seperator" translatesAutoresizingMaskIntoConstraints="NO" id="YFL-mu-pzy">
+                                                <rect key="frame" x="0.0" y="85" width="245.5" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="52" id="rhA-Ab-1PT"/>
-                                                    <constraint firstAttribute="height" constant="52" id="yKm-ja-EEU"/>
+                                                    <constraint firstAttribute="height" constant="1" id="vlw-Sn-xMA"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="9"/>
-                                                <state key="normal" title="0-99" backgroundImage="circleBtnBg">
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-Hd-t2Q">
+                                                <rect key="frame" x="0.0" y="86" width="122.5" height="92"/>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="15"/>
+                                                <state key="normal" title="0-99">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -499,14 +584,17 @@
                                                     <action selector="numberTwoDigitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J8T-K4-Sdf"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="W78-GY-o56">
-                                                <rect key="frame" x="84" y="86" width="52" height="52"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-fB-cCs">
+                                                <rect key="frame" x="122.5" y="85" width="1" height="93"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="CqC-et-0Qt"/>
-                                                    <constraint firstAttribute="width" constant="52" id="D5u-Us-T3D"/>
+                                                    <constraint firstAttribute="width" constant="1" id="3k1-P1-IuK"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="9"/>
-                                                <state key="normal" title="0-18" backgroundImage="circleBtnBg">
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="W78-GY-o56">
+                                                <rect key="frame" x="123.5" y="86" width="122" height="92"/>
+                                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="15"/>
+                                                <state key="normal" title="0-18">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="selected" backgroundImage="selectedDigit"/>
@@ -515,36 +603,54 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="xRv-v9-Or4" firstAttribute="leading" secondItem="7PZ-uX-oUe" secondAttribute="leading" constant="24" id="7Oa-Cn-KCe"/>
-                                            <constraint firstAttribute="trailing" secondItem="W78-GY-o56" secondAttribute="trailing" constant="24" id="9cR-eH-asF"/>
-                                            <constraint firstItem="wNX-Hd-t2Q" firstAttribute="leading" secondItem="7PZ-uX-oUe" secondAttribute="leading" constant="24" id="DWr-rM-rwn"/>
-                                            <constraint firstAttribute="trailing" secondItem="KPQ-iU-eW7" secondAttribute="trailing" constant="24" id="RAT-xY-beU"/>
-                                            <constraint firstAttribute="height" constant="164" id="T6L-53-a42"/>
-                                            <constraint firstAttribute="bottom" secondItem="wNX-Hd-t2Q" secondAttribute="bottom" constant="26" id="U1h-q5-o5m"/>
-                                            <constraint firstItem="xRv-v9-Or4" firstAttribute="top" secondItem="7PZ-uX-oUe" secondAttribute="top" constant="26" id="iG2-Ua-TEx"/>
-                                            <constraint firstAttribute="width" constant="160" id="oxi-E6-cfc"/>
-                                            <constraint firstAttribute="bottom" secondItem="W78-GY-o56" secondAttribute="bottom" constant="26" id="qEd-By-Goc"/>
-                                            <constraint firstItem="KPQ-iU-eW7" firstAttribute="top" secondItem="7PZ-uX-oUe" secondAttribute="top" constant="26" id="w05-sx-iXa"/>
+                                            <constraint firstAttribute="trailing" secondItem="KPQ-iU-eW7" secondAttribute="trailing" id="9Ka-S5-zsV"/>
+                                            <constraint firstItem="KPQ-iU-eW7" firstAttribute="top" secondItem="7PZ-uX-oUe" secondAttribute="top" id="DZW-CO-Ch6"/>
+                                            <constraint firstAttribute="trailing" secondItem="W78-GY-o56" secondAttribute="trailing" id="GRq-nG-tI5"/>
+                                            <constraint firstItem="xRv-v9-Or4" firstAttribute="leading" secondItem="7PZ-uX-oUe" secondAttribute="leading" id="HBg-pT-0Jd"/>
+                                            <constraint firstAttribute="trailing" secondItem="YFL-mu-pzy" secondAttribute="trailing" id="MsP-2c-VV6"/>
+                                            <constraint firstAttribute="bottom" secondItem="lcz-fB-cCs" secondAttribute="bottom" id="N5G-8u-lFz"/>
+                                            <constraint firstItem="WGA-R3-QLy" firstAttribute="leading" secondItem="xRv-v9-Or4" secondAttribute="trailing" constant="1" id="Nh3-Wg-QFx"/>
+                                            <constraint firstAttribute="bottom" secondItem="wNX-Hd-t2Q" secondAttribute="bottom" id="P8Q-fU-xvf"/>
+                                            <constraint firstItem="wNX-Hd-t2Q" firstAttribute="top" secondItem="YFL-mu-pzy" secondAttribute="bottom" id="YhW-Zp-lRA"/>
+                                            <constraint firstItem="lcz-fB-cCs" firstAttribute="top" secondItem="7PZ-uX-oUe" secondAttribute="top" constant="85" id="ZWR-UZ-uWI"/>
+                                            <constraint firstAttribute="bottom" secondItem="W78-GY-o56" secondAttribute="bottom" id="adL-Zg-avz"/>
+                                            <constraint firstItem="KPQ-iU-eW7" firstAttribute="leading" secondItem="WGA-R3-QLy" secondAttribute="trailing" constant="1" id="bnH-S2-C4M"/>
+                                            <constraint firstItem="W78-GY-o56" firstAttribute="leading" secondItem="lcz-fB-cCs" secondAttribute="trailing" id="cIh-yL-RRL"/>
+                                            <constraint firstItem="WGA-R3-QLy" firstAttribute="top" secondItem="7PZ-uX-oUe" secondAttribute="top" id="gTb-Ua-eby"/>
+                                            <constraint firstItem="YFL-mu-pzy" firstAttribute="top" secondItem="xRv-v9-Or4" secondAttribute="bottom" id="hNW-9l-WgE"/>
+                                            <constraint firstItem="lcz-fB-cCs" firstAttribute="leading" secondItem="wNX-Hd-t2Q" secondAttribute="trailing" id="hiQ-nq-X2l"/>
+                                            <constraint firstItem="lcz-fB-cCs" firstAttribute="centerX" secondItem="7PZ-uX-oUe" secondAttribute="centerX" id="icm-Y1-2dQ"/>
+                                            <constraint firstItem="YFL-mu-pzy" firstAttribute="leading" secondItem="7PZ-uX-oUe" secondAttribute="leading" id="nfp-bR-LRw"/>
+                                            <constraint firstItem="WGA-R3-QLy" firstAttribute="centerX" secondItem="7PZ-uX-oUe" secondAttribute="centerX" id="rmz-nP-HNr"/>
+                                            <constraint firstItem="xRv-v9-Or4" firstAttribute="top" secondItem="7PZ-uX-oUe" secondAttribute="top" id="tRN-Ox-Ufw"/>
+                                            <constraint firstItem="W78-GY-o56" firstAttribute="top" secondItem="YFL-mu-pzy" secondAttribute="bottom" id="wh8-qw-nUZ"/>
+                                            <constraint firstItem="wNX-Hd-t2Q" firstAttribute="leading" secondItem="7PZ-uX-oUe" secondAttribute="leading" id="zKQ-6t-QoP"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
-                                                <integer key="value" value="80"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Uo9-hu-ag2" secondAttribute="trailing" id="1rj-uV-lhu"/>
-                                    <constraint firstAttribute="height" constant="225" id="DSt-Ba-PsG"/>
-                                    <constraint firstItem="7PZ-uX-oUe" firstAttribute="top" secondItem="Uo9-hu-ag2" secondAttribute="bottom" constant="15" id="EHa-YG-v1x"/>
+                                    <constraint firstAttribute="height" constant="235" id="DSt-Ba-PsG"/>
+                                    <constraint firstAttribute="trailing" secondItem="XOq-4f-hdI" secondAttribute="trailing" constant="8" id="EtR-QS-JV2"/>
                                     <constraint firstItem="Uo9-hu-ag2" firstAttribute="leading" secondItem="oZC-bZ-slP" secondAttribute="leading" id="Hkc-iK-vE4"/>
-                                    <constraint firstItem="XOq-4f-hdI" firstAttribute="top" secondItem="Uo9-hu-ag2" secondAttribute="bottom" constant="15" id="Mu7-9X-0fj"/>
-                                    <constraint firstItem="XOq-4f-hdI" firstAttribute="centerX" secondItem="oZC-bZ-slP" secondAttribute="centerX" id="Xy9-LA-gvL"/>
+                                    <constraint firstItem="XOq-4f-hdI" firstAttribute="top" secondItem="8y6-rq-Lmu" secondAttribute="bottom" id="IvI-qV-YuB"/>
+                                    <constraint firstItem="WvT-Gy-EkV" firstAttribute="top" secondItem="Uo9-hu-ag2" secondAttribute="bottom" constant="7" id="Rj0-Gr-wTg"/>
+                                    <constraint firstItem="8y6-rq-Lmu" firstAttribute="top" secondItem="Uo9-hu-ag2" secondAttribute="bottom" id="SGW-Fa-qu5"/>
+                                    <constraint firstItem="7PZ-uX-oUe" firstAttribute="leading" secondItem="oZC-bZ-slP" secondAttribute="leading" constant="8" id="TFZ-eK-PVF"/>
+                                    <constraint firstAttribute="bottom" secondItem="XOq-4f-hdI" secondAttribute="bottom" constant="1" id="Z7P-0X-sXM"/>
+                                    <constraint firstAttribute="bottom" secondItem="WvT-Gy-EkV" secondAttribute="bottom" constant="1" id="aIb-fm-iAM"/>
+                                    <constraint firstItem="7PZ-uX-oUe" firstAttribute="top" secondItem="8y6-rq-Lmu" secondAttribute="bottom" id="bhV-Fm-5tC"/>
                                     <constraint firstItem="Uo9-hu-ag2" firstAttribute="top" secondItem="oZC-bZ-slP" secondAttribute="top" id="ibY-kL-Vyx"/>
-                                    <constraint firstItem="7PZ-uX-oUe" firstAttribute="centerX" secondItem="oZC-bZ-slP" secondAttribute="centerX" id="ktv-hz-EeR"/>
+                                    <constraint firstAttribute="trailing" secondItem="8y6-rq-Lmu" secondAttribute="trailing" constant="8" id="kvf-0o-gpx"/>
+                                    <constraint firstAttribute="bottom" secondItem="7PZ-uX-oUe" secondAttribute="bottom" constant="1" id="lpk-4O-Ic9"/>
+                                    <constraint firstAttribute="trailing" secondItem="WvT-Gy-EkV" secondAttribute="trailing" constant="8" id="mqM-zW-hh1"/>
+                                    <constraint firstItem="8y6-rq-Lmu" firstAttribute="leading" secondItem="oZC-bZ-slP" secondAttribute="leading" constant="8" id="soA-cN-vlZ"/>
+                                    <constraint firstItem="XOq-4f-hdI" firstAttribute="leading" secondItem="oZC-bZ-slP" secondAttribute="leading" constant="8" id="tXn-Xn-rtI"/>
+                                    <constraint firstAttribute="trailing" secondItem="7PZ-uX-oUe" secondAttribute="trailing" constant="8" id="z3y-6y-aXA"/>
+                                    <constraint firstItem="WvT-Gy-EkV" firstAttribute="leading" secondItem="oZC-bZ-slP" secondAttribute="leading" constant="8" id="zQw-3Q-PVN"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQ4-jK-bYx">
@@ -603,23 +709,12 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetDigitBg" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-If-m43">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="77"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCC-Pw-jAi">
-                                        <rect key="frame" x="50" y="9" width="22" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Drawn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCC-Pw-jAi">
+                                        <rect key="frame" x="36" y="9" width="68" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="G4S-IT-bCz"/>
-                                            <constraint firstAttribute="height" constant="20" id="Rjq-Mn-wJg"/>
+                                            <constraint firstAttribute="height" constant="20" id="zGQ-2r-9Wd"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7d-hi-Z7M">
-                                        <rect key="frame" x="70" y="9" width="22" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="A6c-IH-OM0"/>
-                                            <constraint firstAttribute="width" constant="22" id="UlN-Ac-w8g"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -660,23 +755,22 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="UCC-Pw-jAi" firstAttribute="top" secondItem="5Mi-ta-nYc" secondAttribute="top" constant="9" id="1hK-pb-P2t"/>
+                                    <constraint firstItem="UCC-Pw-jAi" firstAttribute="top" secondItem="5Mi-ta-nYc" secondAttribute="top" constant="9" id="37f-hu-aoE"/>
+                                    <constraint firstAttribute="trailing" secondItem="UCC-Pw-jAi" secondAttribute="trailing" constant="36" id="4RF-Xu-E5P"/>
                                     <constraint firstItem="MeJ-38-oNA" firstAttribute="leading" secondItem="5Mi-ta-nYc" secondAttribute="leading" constant="50" id="8yT-0s-WSe"/>
                                     <constraint firstAttribute="trailing" secondItem="SQr-b8-H6b" secondAttribute="trailing" constant="48" id="90L-2z-xFr"/>
                                     <constraint firstAttribute="width" constant="140" id="BYw-sp-HSA"/>
                                     <constraint firstAttribute="trailing" secondItem="wQd-If-m43" secondAttribute="trailing" id="C3G-Uk-9n1"/>
-                                    <constraint firstItem="WTY-RZ-2Ke" firstAttribute="top" secondItem="o7d-hi-Z7M" secondAttribute="bottom" constant="1" id="Ct3-Q3-eVb"/>
-                                    <constraint firstItem="MeJ-38-oNA" firstAttribute="top" secondItem="UCC-Pw-jAi" secondAttribute="bottom" constant="1" id="K07-Hz-NPs"/>
                                     <constraint firstItem="wQd-If-m43" firstAttribute="leading" secondItem="5Mi-ta-nYc" secondAttribute="leading" id="KPS-TN-9g3"/>
                                     <constraint firstItem="wQd-If-m43" firstAttribute="top" secondItem="5Mi-ta-nYc" secondAttribute="top" id="Ouf-cc-QHb"/>
-                                    <constraint firstAttribute="trailing" secondItem="o7d-hi-Z7M" secondAttribute="trailing" constant="48" id="PuR-tO-MMF"/>
-                                    <constraint firstItem="UCC-Pw-jAi" firstAttribute="leading" secondItem="5Mi-ta-nYc" secondAttribute="leading" constant="50" id="Tni-Sn-Fdu"/>
-                                    <constraint firstItem="SQr-b8-H6b" firstAttribute="top" secondItem="o7d-hi-Z7M" secondAttribute="bottom" id="ZrY-iy-rOW"/>
+                                    <constraint firstItem="UCC-Pw-jAi" firstAttribute="leading" secondItem="5Mi-ta-nYc" secondAttribute="leading" constant="36" id="YZX-cC-IpB"/>
                                     <constraint firstAttribute="height" constant="77" id="bMP-fH-Eek"/>
-                                    <constraint firstItem="voc-Qg-woe" firstAttribute="top" secondItem="UCC-Pw-jAi" secondAttribute="bottom" id="ccx-23-KSK"/>
                                     <constraint firstItem="voc-Qg-woe" firstAttribute="leading" secondItem="5Mi-ta-nYc" secondAttribute="leading" constant="50" id="fEg-kJ-KVN"/>
-                                    <constraint firstItem="o7d-hi-Z7M" firstAttribute="top" secondItem="5Mi-ta-nYc" secondAttribute="top" constant="9" id="mIy-mF-DTs"/>
+                                    <constraint firstItem="voc-Qg-woe" firstAttribute="top" secondItem="UCC-Pw-jAi" secondAttribute="bottom" id="g4p-Ni-McB"/>
+                                    <constraint firstItem="MeJ-38-oNA" firstAttribute="top" secondItem="UCC-Pw-jAi" secondAttribute="bottom" constant="1" id="nmf-Zc-cJj"/>
                                     <constraint firstAttribute="trailing" secondItem="WTY-RZ-2Ke" secondAttribute="trailing" constant="48" id="u1o-Id-lJU"/>
+                                    <constraint firstItem="WTY-RZ-2Ke" firstAttribute="top" secondItem="UCC-Pw-jAi" secondAttribute="bottom" constant="1" id="uKm-oZ-HsK"/>
+                                    <constraint firstItem="SQr-b8-H6b" firstAttribute="top" secondItem="UCC-Pw-jAi" secondAttribute="bottom" id="wJT-93-mWZ"/>
                                     <constraint firstAttribute="bottom" secondItem="wQd-If-m43" secondAttribute="bottom" id="yVE-c9-0ZU"/>
                                 </constraints>
                             </view>
@@ -847,7 +941,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y7l-O2-xcO" secondAttribute="trailing" constant="10" id="mPO-JL-N4P"/>
                             <constraint firstItem="yiX-Vb-dpl" firstAttribute="leading" secondItem="aum-hu-rHW" secondAttribute="trailing" constant="15.5" id="rHh-iB-bYS"/>
                             <constraint firstItem="5Mi-ta-nYc" firstAttribute="top" secondItem="49b-db-vSy" secondAttribute="bottom" constant="3" id="t0d-vg-SHa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ebg-fV-Dpc" secondAttribute="bottom" constant="8" id="t5R-xo-Vq8"/>
+                            <constraint firstAttribute="bottom" secondItem="Ebg-fV-Dpc" secondAttribute="bottom" constant="8" id="t5R-xo-Vq8"/>
                             <constraint firstItem="ich-iT-Drc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uxx-Ks-yrb"/>
                             <constraint firstItem="12T-zc-Uoi" firstAttribute="leading" secondItem="gh5-WG-P19" secondAttribute="trailing" constant="8" id="v9W-9W-WVe"/>
                             <constraint firstItem="sZR-DD-8ok" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="wwQ-kR-cgS"/>
@@ -867,6 +961,7 @@
                         <outlet property="FDButton" destination="NM3-ud-VGQ" id="Zsn-CF-d4c"/>
                         <outlet property="LDButton" destination="Czc-dc-kcL" id="ugw-bX-ZPj"/>
                         <outlet property="TDButton" destination="UQg-dZ-Kwe" id="AcB-HK-lFa"/>
+                        <outlet property="bellButton" destination="ich-iT-Drc" id="mAR-X6-6G5"/>
                         <outlet property="betVlaueLbl" destination="KID-ou-V5g" id="024-ge-fMh"/>
                         <outlet property="bigButton" destination="FWC-B4-S8l" id="UkH-rb-mlh"/>
                         <outlet property="chartView" destination="aum-hu-rHW" id="m1X-QF-aGS"/>
@@ -896,13 +991,16 @@
                         <outlet property="stockLbl" destination="WTN-8P-d3t" id="if3-rM-zbt"/>
                         <outlet property="stockTimerLbl" destination="yiX-Vb-dpl" id="QLR-nY-4I3"/>
                         <outlet property="stockView" destination="49b-db-vSy" id="idF-I6-BNP"/>
+                        <outlet property="stripSelectedView" destination="8y6-rq-Lmu" id="yPY-F1-kZl"/>
+                        <outlet property="tieButton" destination="KLh-bv-wZY" id="TAh-8t-BI1"/>
+                        <outlet property="tieButtonWidthContraint" destination="2nB-a0-Nep" id="faD-Ub-Lec"/>
                         <outlet property="timeLbl" destination="VoW-po-2t3" id="GmL-Oz-vUw"/>
                         <outlet property="userCreditLbl" destination="gh5-WG-P19" id="rAk-4q-x9h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="500.59970014992507" y="-674.39999999999998"/>
+            <point key="canvasLocation" x="1065" y="-1076"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="Yxq-sI-6PC">
@@ -1035,7 +1133,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mny-oh-QTc">
                                 <rect key="frame" x="427" y="51" width="230" height="40"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia3-KT-rTc">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia3-KT-rTc">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Stock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ujm-dn-Abd">
@@ -1082,11 +1180,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-au-Yls">
-                                        <rect key="frame" x="118" y="0.0" width="112" height="40"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-au-Yls">
+                                        <rect key="frame" x="118" y="0.0" width="25" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select BTU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dhj-T6-zhU">
-                                                <rect key="frame" x="5" y="10" width="87" height="20"/>
+                                                <rect key="frame" x="5" y="10" width="0.0" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="D1t-gg-Vab"/>
                                                 </constraints>
@@ -1095,14 +1193,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="hrO-zt-FUV">
-                                                <rect key="frame" x="97" y="13" width="10" height="15"/>
+                                                <rect key="frame" x="10" y="13" width="10" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="135-f9-BVb"/>
                                                     <constraint firstAttribute="width" constant="10" id="GgB-nS-wR1"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwJ-2J-hqh">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="40"/>
                                                 <connections>
                                                     <action selector="selectStockBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T1z-he-26C"/>
                                                     <action selector="stockBtnClicked:" destination="1vy-rm-lZ9" eventType="touchUpInside" id="tXo-FQ-7rp"/>
@@ -1195,7 +1293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZV-u1-UCQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="779.46026986506752" y="248.80000000000001"/>
+            <point key="canvasLocation" x="770" y="-306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XB7-xR-6FC">
@@ -1219,26 +1317,23 @@
         <image name="BetDigitBg" width="140" height="76"/>
         <image name="CancelBtn" width="58.5" height="32"/>
         <image name="Chips" width="117" height="103"/>
-        <image name="NumbersD" width="37" height="37"/>
+        <image name="SecondSeparator" width="16" height="16"/>
+        <image name="Seperator" width="16" height="16"/>
         <image name="USA Flag" width="124" height="124"/>
         <image name="arrowDown" width="10" height="10"/>
         <image name="back" width="124" height="124"/>
         <image name="background" width="736" height="414"/>
         <image name="bell.fill" catalog="system" width="64" height="62"/>
-        <image name="bothD" width="37" height="37"/>
-        <image name="circleBtnBg" width="37.5" height="37.5"/>
         <image name="confirmBtn" width="58.5" height="32"/>
         <image name="digitBg" width="11" height="16"/>
         <image name="ecgame" width="57" height="56"/>
-        <image name="firstD" width="37" height="37"/>
-        <image name="lastD" width="37" height="37"/>
+        <image name="firstSeparator" width="16" height="16"/>
         <image name="menu open" width="124" height="124"/>
         <image name="musicOn" width="124" height="124"/>
         <image name="nextBtn" width="124" height="124"/>
         <image name="notificationIcon" width="124" height="124"/>
         <image name="notificationbackground" width="389" height="78"/>
         <image name="selectedDigit" width="112" height="112"/>
-        <image name="twod" width="37" height="37"/>
         <image name="volume mute" width="124" height="124"/>
     </resources>
 </document>

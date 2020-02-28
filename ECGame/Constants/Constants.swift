@@ -45,6 +45,8 @@ struct ScreenSize {
 struct Color {
     static let primaryColor = "#700000"
     static let labelColor = "#E3942E"
+    static let btnWhiteColor = "#FFFFFF"
+    static let btnRedColor = "#900C3F"
     static let btnSkyColor = "#03cdff"
     static let btnGreenColor = "#13c196"
     static let btnYellowColor = "#e8a31f"
@@ -71,10 +73,12 @@ struct UrlName {
     static let userRunningBetUrl = "apimobile/userRunningBet?userId="
     static let betHistoryUrl = "apimobile/userBetHistory"
     static let onlineHistoryUrl = "apimobile/onlineHistory?userId="
-    static let roadMapUrl = "apimobile/getCrawlInfo?stockId="
+    static let roadMapUrl = "apimobile/getCrawlInfo"
     static let notificationUrl = "apimobile/latestBet"
+    static let currentBetResultUrl = "apimobile/betting"
     static let updateUserProfileUrl = "apimobile/editProfile"
     static let stockAnalysisUrl = "apimobile/betAnalysis"
+    static let roadmapListUrl = "apimobile/getCrawlInfomultiple"
 }
 //MARK: - Picker Title -
 struct PickerTitle {
@@ -199,7 +203,7 @@ struct buttonTitle {
     static let claerBtnString = "Clear"
     static let confirmBtnString = "Confirm"
     static let bigBtnString = "BIG"
-    static let smallBtnString = "SML"
+    static let smallBtnString = "SMALL"
     static let oddBtnString = "ODD"
     static let evenBtnString = "EVEN"
     static let highBtnString = "HIGH"
@@ -224,6 +228,7 @@ struct UserDefaultsKey {
     static let isLanguageDefinded = "customLanguage"
     static let isMusicOnOff = "musicOnOff"
     static let isProfileShow = "ProfileShow"
+    static let CurrentBetIDs = "CurrentBetIDs"
 }
 
 // MARK: - AlertField Names
@@ -325,6 +330,7 @@ struct BetDigit {
     static let mid = "mid"
     static let odd = "odd"
     static let even = "even"
+    static let tie = "tie"
     static let firstDigitTag = 20
     static let lastDigitTag = 21
     static let twoDigitTag = 22

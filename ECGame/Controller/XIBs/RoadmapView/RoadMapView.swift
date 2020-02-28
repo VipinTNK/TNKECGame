@@ -130,7 +130,7 @@ extension RoadMapView {
      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {

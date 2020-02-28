@@ -16,6 +16,7 @@ class PreviewTableCell: UITableViewCell, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var label4: UILabel!
     @IBOutlet weak var label5: UILabel!
     @IBOutlet weak var label6: UILabel!
+    @IBOutlet weak var stockClosedBtn: UIButton!
     
     @IBOutlet weak var numberCollectionView: UICollectionView!
     @IBOutlet weak var bigSmallCollectionView: UICollectionView!

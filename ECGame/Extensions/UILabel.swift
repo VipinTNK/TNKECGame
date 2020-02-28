@@ -62,4 +62,11 @@ extension UIButton {
         self.titleLabel?.textAlignment = .center
         self.sizeToFit()
     }
+    
+    func renderColorOnImage(_ imageString : String, imageColor : UIColor) {
+        let originalImage = UIImage(named: imageString)
+        let tintedImage = originalImage?.withRenderingMode(.alwaysTemplate)
+        self.setImage(tintedImage, for: .normal)
+        self.tintColor = imageColor
+    }
 }

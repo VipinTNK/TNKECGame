@@ -24,8 +24,6 @@ class RoadmapManager: NSObject {
     //To get data from api and manage RoadmapObject
     class func createGridArrayForRoadmap(roadmapDataArray : [RoadmapDataObjectModel], withSelectedRoadmapType type : Int )-> [FirstDigitItems] {
        
-         let jsonString = roadmapDataArray.toJSONString(prettyPrint: true)
-         print(jsonString as AnyObject)
          
          var itemAtIndex = 0
          var limForBig = 0
@@ -213,7 +211,8 @@ class RoadmapManager: NSObject {
              let numbers_firstDigitCollectionObject = FirstDigitItems(JSON: ["itemArray" : numbers_itemArray])
              numbers_firstDigitCollectionObject?.itemArray = numbers_itemArray
              firstDigitTableArray.append(numbers_firstDigitCollectionObject!)
-             
+//          let jsonString = firstDigitTableArray.toJSONString(prettyPrint: true)
+//                print(jsonString as AnyObject)
          return firstDigitTableArray
      }
 }

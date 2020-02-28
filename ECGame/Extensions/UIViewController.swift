@@ -34,7 +34,6 @@ extension UIViewController     {
         UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self]).color = UIColor.white
         //hud.activityIndicatorColor = UIColor.white
         hud.label.textColor = UIColor.white
-
     }
     
     /// Dismiss loader after API response
@@ -52,6 +51,29 @@ extension UIViewController     {
         alertView.addAction(action)
         self.present(alertView, animated: true, completion: nil)
     }
+    
+    // Add Userdefaults -
+    func addElementInUserdefaults(_ value : String, key: String) -> Void {
+        let defaults = UserDefaults.standard
+        defaults.setValue(value, forKey: key)
+        defaults.synchronize()
+    }
+    
+    func removeElementFromUserdefaults(_ key: String) -> Void {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: key)
+        defaults.synchronize()
+    }
+    
+    func getElementFromUserdefaults(_ key: String) -> String {
+        let defaults = UserDefaults.standard
+        if defaults.value(forKey: key) != nil {
+            return defaults.value(forKey: key) as! String
+        }
+        return ""
+    }
+    
+    //Remove Userdefaults -
    
     /// Showing generic alert
     ///

@@ -86,8 +86,7 @@ open class BalloonMarker: MarkerImage
         return offset
     }
     
-    open override func draw(context: CGContext, point: CGPoint)
-    {
+    open override func draw(context: CGContext, point: CGPoint) {
         guard let label = label else { return }
         
         let offset = self.offsetForDrawing(atPoint: point)
@@ -104,74 +103,51 @@ open class BalloonMarker: MarkerImage
         context.saveGState()
         
         context.setFillColor(color.cgColor)
-
-        if offset.y > 0
-        {
+        
+        if offset.y > 0 {
+            
             context.beginPath()
-            context.move(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y + arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
-                y: rect.origin.y + arrowSize.height))
-            //arrow vertex
-            context.addLine(to: CGPoint(
-                x: point.x,
-                y: point.y))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
-                y: rect.origin.y + arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
-                y: rect.origin.y + arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
-                y: rect.origin.y + rect.size.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y + rect.size.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y + arrowSize.height))
+            let rect2 = CGRect(x: rect.origin.x, y: rect.origin.y + arrowSize.height, width: rect.size.width, height: rect.size.height - arrowSize.height)
+            let clipPath = UIBezierPath(roundedRect: rect2, cornerRadius: 5.0).cgPath
+            context.addPath(clipPath)
+            context.closePath()
+            context.fillPath()
+            
+            // arraow vertex
+            context.beginPath()
+            let p1 = CGPoint(x: rect.origin.x + rect.size.width / 2.0 - arrowSize.width / 2.0, y: rect.origin.y + arrowSize.height + 1)
+            context.move(to: p1)
+            context.addLine(to: CGPoint(x: p1.x + arrowSize.width, y: p1.y))
+            context.addLine(to: CGPoint(x: point.x, y: point.y))
+            context.addLine(to: p1)
+
+            context.fillPath()
+            
+        } else {
+            context.beginPath()
+            let rect2 = CGRect(x: rect.origin.x, y: rect.origin.y, width: rect.size.width, height: rect.size.height - arrowSize.height)
+            let clipPath = UIBezierPath(roundedRect: rect2, cornerRadius: 5.0).cgPath
+            context.addPath(clipPath)
+            context.closePath()
+            context.fillPath()
+
+            // arraow vertex
+            context.beginPath()
+            let p1 = CGPoint(x: rect.origin.x + rect.size.width / 2.0 - arrowSize.width / 2.0, y: rect.origin.y + rect.size.height - arrowSize.height - 1)
+            context.move(to: p1)
+            context.addLine(to: CGPoint(x: p1.x + arrowSize.width, y: p1.y))
+            context.addLine(to: CGPoint(x: point.x, y: point.y))
+            context.addLine(to: p1)
+
             context.fillPath()
         }
-        else
-        {
-            context.beginPath()
-            context.move(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
-                y: rect.origin.y))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
-                y: rect.origin.y + rect.size.height - arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
-                y: rect.origin.y + rect.size.height - arrowSize.height))
-            //arrow vertex
-            context.addLine(to: CGPoint(
-                x: point.x,
-                y: point.y))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
-                y: rect.origin.y + rect.size.height - arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y + rect.size.height - arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y))
-            context.fillPath()
-        }
-
+        
         if offset.y > 0 {
             rect.origin.y += self.insets.top + arrowSize.height
         } else {
             rect.origin.y += self.insets.top
         }
-
+        
         rect.size.height -= self.insets.top + self.insets.bottom
         
         UIGraphicsPushContext(context)
@@ -185,7 +161,7 @@ open class BalloonMarker: MarkerImage
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        setLabel(String(entry.y))
+        setLabel(String("\(entry.data!) \n \(entry.y)"))
     }
     
     open func setLabel(_ newLabel: String)

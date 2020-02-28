@@ -191,7 +191,6 @@ extension BetHistoryViewController{
                         DispatchQueue.main.async {
                             self.showTable(show: false)
                         }
-                        print(list)
                     }else {
                         DispatchQueue.main.async {
                             self.makeToastInCenterWithMessage(DataResponse.noRecordFound)

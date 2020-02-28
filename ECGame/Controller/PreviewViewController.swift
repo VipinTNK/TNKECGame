@@ -32,11 +32,12 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     var player : AVAudioPlayer?
     let dropDownObj = DropDown()
     var notificationModel : NotificationModel?
-    var selectedStockId = 7
+    var selectedStockIds = "4,5,7"
     var timeloop = 60
     var notifCounter = 0
     var roadMapModel : RoadmapModel?
     var tableArray = [Any]()
+   
     
     //MARK: - View Life -
     override func loadView() {
@@ -46,11 +47,16 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadBasicView()
+        self.showHUD(progressLabel: AlertField.loaderString)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.getRoadmapDataFromServer(stockIDs: selectedStockIds)
     }
     
     //MARK: - Initials -
     func loadBasicView() -> Void {
-        self.creatDropdownRoadmap()
         self.updateFlagForSelectedLanguage()
         self.setdefaultStock()
         previewTableView.delegate = self
@@ -64,7 +70,6 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         //Add properties in notificationView
         self.notificationBgView.setCornerRadiusOfView(cornerRadiusValue: 10)
         self.getNotificationAPI()
-        self.getRoadmapDataFromServer(stockID: selectedStockId)
     }
     
     func setdefaultStock() -> Void {
@@ -89,7 +94,7 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         self.getMovetoGameAction(sender)
     }
     @IBAction func stockBtnClicked(_ sender: UIButton) {
-        self.selectfromDropdown(sender: sender)
+        
     }
     
     //MARK: - Button Methods -
@@ -117,14 +122,21 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         }
     }
     func getMovetoGameAction(_ sender: UIButton) {
-        let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
-        view.selectedStockId = self.selectedStockId
-        view.timeloop = self.timeloop
-        view.updateLocaleClosure = { () in
-            self.updateFlagForSelectedLanguage()
-            self.updateTextOnLanguageChange()
+        for index in 0..<tableArray.count {
+            let stock = tableArray[index]  as! [String : Any]
+            if stock["previewStockStatus"] as! String == "open" {
+                let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
+                let idArray = selectedStockIds.components(separatedBy: ",")
+                view.selectedStockId = idArray[index]
+                view.timeloop = self.timeloop
+                view.updateLocaleClosure = { () in
+                    self.updateFlagForSelectedLanguage()
+                    self.updateTextOnLanguageChange()
+                }
+                self.navigationController?.pushViewController(view, animated: true)
+                break;
+            }
         }
-        self.navigationController?.pushViewController(view, animated: true)
     }
     
     //MARK:- Notification -
@@ -181,6 +193,22 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         languageButton.setImage(tempFlagImage, for: .normal)
     }
     
+    func createGamePreviewList(stockTypeList : [RoadmapStockTypeModel])-> [Any] {
+           var gamePreviewList = [Any]()
+           for stock in stockTypeList {
+               var stockDetails = [String :Any]()
+               let itemArray = RoadmapManager.getLastElements(array: stock.stockData!, count: 30)
+               stock.stockData! = []
+               stock.stockData! = itemArray
+               stockDetails["previewStockCategory"] =  stock.stockCategory
+               stockDetails["previewStockName"] =  stock.stockName
+               stockDetails["previewStockStatus"] =  stock.status
+               stockDetails["previewStockData"] = RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: stock.stockData!, withSelectedRoadmapType: 1)
+               gamePreviewList.append(stockDetails)
+           }
+           return gamePreviewList
+       }
+    
     //MARK: - Refresh Text for Multi Language support -
     func updateTextOnLanguageChange() -> Void {
         self.gamingLbl.text = NavigationTitle.gamingString.localiz()
@@ -211,112 +239,11 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
         UserDefaults.init().set(true, forKey: UserDefaultsKey.isLanguageDefinded)
         self.updateTextOnLanguageChange()
     }
-    
-    //MARK: - Dropdown Actions -
-    func selectfromDropdown(sender : UIButton) {
-        self.view.endEditing(true)
-        dropDownObj.anchorView = stockLbl
-        if sender.tag == 9 {
-            dropDownObj.tag = 9
-            dropDownObj.width = stockLbl.frame.width + 15
-            dropDownObj.dataSource = [Stock.USStock.localiz(), Stock.ChinaStock.localiz(), Stock.CryptoCurrency.localiz()]
-            appDelegate.sharedInstance.dropdownArray = [Stock.USStock, Stock.ChinaStock, Stock.CryptoCurrency]
-        }
-        else if sender.tag == 10 {
-            dropDownObj.tag = 10
-            dropDownObj.anchorView = BTULbl
-            dropDownObj.width = BTULbl.frame.width + 20
-            let selectedStock = stockLbl.text?.localiz()
-            if selectedStock == Stock.USStock.localiz() {
-                dropDownObj.dataSource = [Stock.USDollarIndiex.localiz()]
-                appDelegate.sharedInstance.dropdownArray = [Stock.USDollarIndiex]
-            }
-            else if selectedStock == Stock.ChinaStock.localiz() {
-                dropDownObj.dataSource = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
-                appDelegate.sharedInstance.dropdownArray = [Stock.SH000001, Stock.SZ399001, Stock.SZ399415, Stock.SH000300]
-            }
-            else if selectedStock == Stock.CryptoCurrency.localiz() {
-                dropDownObj.dataSource = [Stock.BTCUSDT.localiz()]
-                appDelegate.sharedInstance.dropdownArray = [Stock.BTCUSDT]
-            }
-            else {
-                self.makeToastInBottomWithMessage(AlertField.emptyStockString)
-                return
-            }
-        }
-        dropDownObj.show()
-    }
-    
-    //MARK: - Drop Down -
-    func creatDropdownRoadmap()  {
-        
-        self.view.bringSubviewToFront(dropDownObj)
-        dropDownObj.cornerRadius = 10
-        dropDownObj.textFont = UIFont.init(name: "Optima", size: 11.0)!
-        dropDownObj.textColor = CommonMethods.hexStringToUIColor(hex: Color.dropdownTextColor)
-        
-        dropDownObj.selectionAction = { [unowned self] (index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)")
-            self.dropDownObj.hide()
-            if self.dropDownObj.tag == 9 {
-                self.stockLbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz() //item.localiz()
-                self.BTULbl.text = Stock.selectBTU.localiz()
-                appDelegate.sharedInstance.selectedStockname = appDelegate.sharedInstance.dropdownArray[index]
-            }
-            else if self.dropDownObj.tag == 10 {
-                self.stockLbl.text = appDelegate.sharedInstance.selectedStockname.localiz()
-                self.BTULbl.text = appDelegate.sharedInstance.dropdownArray[index].localiz()
-                appDelegate.sharedInstance.selectedBTUName = appDelegate.sharedInstance.dropdownArray[index]
-                if appDelegate.sharedInstance.selectedStockname == Stock.USStock {
-                    self.selectedStockId = 5
-                    self.timeloop = 300
-                    appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
-                }
-                else if appDelegate.sharedInstance.selectedStockname == Stock.ChinaStock {
-                    if appDelegate.sharedInstance.selectedBTUName == Stock.SH000001 {
-                        self.selectedStockId = 1
-                        self.timeloop = 300
-                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
-                    }
-                    else if appDelegate.sharedInstance.selectedBTUName == Stock.SZ399001 {
-                        self.selectedStockId = 4
-                        self.timeloop = 300
-                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
-                    }
-                    else if appDelegate.sharedInstance.selectedBTUName == Stock.SZ399415 {
-                        self.selectedStockId = 3
-                        self.timeloop = 300
-                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
-                    }
-                    else if appDelegate.sharedInstance.selectedBTUName == Stock.SH000300 {
-                        self.selectedStockId = 2
-                        self.timeloop = 300
-                        appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
-                    }
-                }
-                else if appDelegate.sharedInstance.selectedStockname == Stock.CryptoCurrency {
-                    self.selectedStockId = 7
-                    self.timeloop = 60
-                    appDelegate.sharedInstance.selectedTimeLoop = Stock.oneMinutes
-                }
-                self.getRoadmapDataFromServer(stockID: self.selectedStockId)
-            }
-        }
-    }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
+
+
 //MARK: - API Call -
 extension PreviewViewController {
-    
     //Header Notification -
     func getNotificationAPI() {
         if NetworkManager.sharedInstance.isInternetAvailable(){
@@ -343,33 +270,26 @@ extension PreviewViewController {
     }
     
     // API call for roadmap view
-      func getRoadmapDataFromServer(stockID : Int) {
+      func getRoadmapDataFromServer(stockIDs : String) {
           if NetworkManager.sharedInstance.isInternetAvailable(){
-              self.showHUD(progressLabel: AlertField.loaderString)
-              let stateURL : String = UrlName.baseUrl + UrlName.roadMapUrl
-              let params = ["stockId" : stockID]  as [String : Any]
+              let stateURL : String = UrlName.baseUrl + UrlName.roadmapListUrl
+              let params = ["stockId" : "4,5,7"]  as [String : Any]
               NetworkManager.sharedInstance.commonNetworkCallWithHeader(header: [:], url: stateURL, method: .post, parameters: params, completionHandler: { (json, status) in
                   guard let jsonValue = json else {
                       self.dismissHUD(isAnimated: true)
                       return
                   }
-                  self.roadMapModel = Mapper<RoadmapModel>().map(JSONObject: jsonValue )
-                  
+                  self.roadMapModel = Mapper<RoadmapModel>().map(JSONObject: jsonValue)
                   if  self.roadMapModel?.code == 200, self.roadMapModel!.status {
-                      if let list = self.roadMapModel?.data![0].roadMap, !list.isEmpty {
-                        
-                          self.roadMapModel?.data![0].roadMap = []
-                          self.roadMapModel?.data![0].roadMap = RoadmapManager.getLastElements(array: list, count: 28)
+                     if let list = self.roadMapModel?.data![0].roadMap, !list.isEmpty {
                           self.tableArray = []
-                          self.tableArray.append(RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap!, withSelectedRoadmapType: 4))
-                         self.tableArray.append(RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap!, withSelectedRoadmapType: 1))
-                         self.tableArray.append(RoadmapManager.createGridArrayForRoadmap(roadmapDataArray: self.roadMapModel!.data![0].roadMap!, withSelectedRoadmapType: 2))
-                         self.previewTableView.reloadData()
+                          self.tableArray = self.createGamePreviewList(stockTypeList: list)
+                          self.previewTableView.reloadData()
                       }
                   }
                   self.dismissHUD(isAnimated: true)
               })
-          }else{
+          } else {
               self.showNoInternetAlert()
           }
       }
@@ -389,27 +309,37 @@ extension PreviewViewController {
             let bundle = self.initialiseBundle(ClassString: PreviewTableCell.className())
             previewTableView.register(UINib(nibName: PreviewTableCell.className(), bundle: bundle), forCellReuseIdentifier: PreviewTableCell.className())
            }
+      
+        let stcokObject =  tableArray[indexPath.row] as! [String : Any]
+        let collectionArray = stcokObject["previewStockData"] as! [FirstDigitItems]
+      
+        // Labels inside cells
         cell?.label1.backgroundColor = .clear
         cell?.contentView.bringSubviewToFront(cell!.label1)
-        if indexPath.row == 0 {
-            cell?.label1.text = buttonTitle.roadmapbothDigitString.localiz()
-        } else if indexPath.row == 1 {
-            cell?.label1.text = buttonTitle.roadmapfirstDigitString.localiz()
-        } else if indexPath.row == 2 {
-            cell?.label1.text = buttonTitle.roadmaplastDigitString.localiz()
-        }
-        
-        cell?.label4.text = appDelegate.sharedInstance.selectedStockname.localiz()
-        cell?.label5.text = appDelegate.sharedInstance.selectedBTUName.localiz()
-       
-        cell?.collectionDataArray = tableArray[indexPath.row] as! [FirstDigitItems]
+        cell?.label1.text = String(stcokObject["previewStockCategory"] as! String).uppercased()
+        cell?.label2.text = String(stcokObject["previewStockName"] as! String).uppercased()
+        cell?.label3.text = self.roadMapModel?.data![0].roadMap![indexPath.row].stockData?.last?.gameId
+        cell?.label4.text = self.roadMapModel?.data![0].roadMap![indexPath.row].stockData?.last?.PT
+      
+        // Data managing inside collection views
+        cell?.collectionDataArray = collectionArray
         cell?.numberCollectionView.reloadData()
         cell?.bigSmallCollectionView.reloadData()
         cell?.evenOddCollectionView.reloadData()
         cell?.upmidhighCollectionView.reloadData()
+        
+        // Tap gesture to navigate Game Screen
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         cell?.contentView.tag = indexPath.row
         cell?.contentView.addGestureRecognizer(tap)
+    
+        // Manage stock button to show status of stock
+        if stcokObject["previewStockStatus"] as! String == "open" {
+            cell?.stockClosedBtn.isHidden = true
+        } else {
+            cell?.stockClosedBtn.isHidden = false
+        }
+        
         return cell!
     }
     
@@ -421,30 +351,42 @@ extension PreviewViewController {
         self.movetoGameClicked(menuButton)
     }
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        if BTULbl.text?.localiz() == Stock.selectBTU.localiz() {
-            self.makeToastInBottomWithMessage(AlertField.emptyStockString)
-            return
-        }
-        //Added code for pods
-        let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
-        view.selectedStockId = self.selectedStockId
-        view.timeloop = self.timeloop
-        if sender?.view?.tag == 0 {
-            view.betDigitString = BetDigit.bothdigit
-        }
-        else if sender?.view?.tag == 1 {
+        let stock = tableArray[sender!.view!.tag]  as! [String : Any]
+        if stock["previewStockStatus"] as! String == "open" {
+            if BTULbl.text?.localiz() == Stock.selectBTU.localiz() {
+                self.makeToastInBottomWithMessage(AlertField.emptyStockString)
+                return
+            }
+            //Added code for pods
+            let view = self.getMainStoryBoardSharedInstance().instantiateViewController(withIdentifier: GameViewController.className()) as! GameViewController
+            let idArray = selectedStockIds.components(separatedBy: ",")
+            view.selectedStockId = idArray[sender!.view!.tag]
             view.betDigitString = BetDigit.firstdigit
+            if idArray[sender!.view!.tag] == "4" {
+                appDelegate.sharedInstance.selectedStockname = Stock.ChinaStock
+                appDelegate.sharedInstance.selectedBTUName = Stock.SZ399001
+                appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
+                view.timeloop = 300
+            }
+            else if idArray[sender!.view!.tag] == "5" {
+                appDelegate.sharedInstance.selectedStockname = Stock.USStock
+                appDelegate.sharedInstance.selectedBTUName = Stock.USDollarIndiex
+                appDelegate.sharedInstance.selectedTimeLoop = Stock.fiveMinutes
+                view.timeloop = 300
+            }
+            else {
+                appDelegate.sharedInstance.selectedStockname = Stock.CryptoCurrency
+                appDelegate.sharedInstance.selectedBTUName = Stock.BTCUSDT
+                appDelegate.sharedInstance.selectedTimeLoop = Stock.oneMinutes
+                view.timeloop = 60
+            }
+            self.navigationController?.pushViewController(view, animated: true)
         }
-        else if sender?.view?.tag == 2 {
-            view.betDigitString = BetDigit.lastdigit
-        }
-        self.navigationController?.pushViewController(view, animated: true)
     }
 }
 
 extension PreviewViewController {
-    
-    func initialSetup(){
+    func initialSetup() {
         UserDefaults.standard.set(false, forKey: UserDefaultsKey.isProfileShow)
         IQKeyboardManager.shared.enable = true
         let islangSet = UserDefaults.init().bool(forKey: UserDefaultsKey.isLanguageDefinded)

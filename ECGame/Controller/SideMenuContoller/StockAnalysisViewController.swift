@@ -94,7 +94,6 @@ class StockAnalysisViewController: DemoBaseViewController, datePickerOpen  {
     
     func setChartData(count: Int, range: UInt32) {
         let yVals = (0..<count).map { (i) -> BarChartDataEntry in
-            print(i)
             let val1 = Double((stockAnalysis?.data![i].winBet)!)
             let val2 = Double((stockAnalysis?.data![i].loseBet)!)
             return BarChartDataEntry(x: Double(i+1), yValues: [val1, val2], icon: #imageLiteral(resourceName: "primary"))
@@ -163,7 +162,7 @@ class StockAnalysisViewController: DemoBaseViewController, datePickerOpen  {
     }
     
     //MARK:- IBAction Method
-    func getDatePickerBtnAction(minDate : String){
+    func getDatePickerBtnAction(minDate : String) {
         self.mainBackView.alpha = 0.5
         self.mainBackView.isUserInteractionEnabled = false
         //Added code for pods
@@ -173,7 +172,7 @@ class StockAnalysisViewController: DemoBaseViewController, datePickerOpen  {
         datePickerView.dateFormatter.dateFormat = PickerTitle.datePickerFormatString
         if minDate.count == 0 {
             datePickerView.pickerView.maximumDate = Date()
-        }else {
+        } else {
             let date = datePickerView.dateFormatter.date(from: minDate)
             datePickerView.pickerView.minimumDate = date
             datePickerView.pickerView.maximumDate = Date()
