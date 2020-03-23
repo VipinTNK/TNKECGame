@@ -173,7 +173,15 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
     /**
     Returns the default singleton instance.
     */
-    @objc public static let shared = IQKeyboardManager()
+    @objc public class var shared: IQKeyboardManager {
+        struct Static {
+            //Singleton instance. Initializing keyboard manger.
+            static let kbManager = IQKeyboardManager()
+        }
+        
+        /** @return Returns the default singleton instance. */
+        return Static.kbManager
+    }
     
     ///-------------------------
     /// MARK: IQToolbar handling
@@ -904,25 +912,9 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                 static weak var keyWindow: UIWindow?
             }
 
-            var originalKeyWindow : UIWindow? = nil
-            
-            #if swift(>=5.1)
-            if #available(iOS 13, *) {
-                originalKeyWindow = UIApplication.shared.connectedScenes
-                    .compactMap { $0 as? UIWindowScene }
-                    .flatMap { $0.windows }
-                    .first(where: { $0.isKeyWindow })
-            } else {
-                originalKeyWindow = UIApplication.shared.keyWindow
-            }
-            #else
-            originalKeyWindow = UIApplication.shared.keyWindow
-            #endif
-
-            
-            
             //If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
-            if let originalKeyWindow = originalKeyWindow {
+            if let originalKeyWindow = UIApplication.shared.keyWindow,
+                (Static.keyWindow == nil || Static.keyWindow != originalKeyWindow) {
                 Static.keyWindow = originalKeyWindow
             }
 
@@ -1269,20 +1261,17 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                 }
                 
                 //Updating contentInset
-                if let lastScrollViewRect = lastScrollView.superview?.convert(lastScrollView.frame, to: window),
-                    lastScrollView.shouldIgnoreContentInsetAdjustment == false {
+                if let lastScrollViewRect = lastScrollView.superview?.convert(lastScrollView.frame, to: window) {
                     
-                    var bottomInset: CGFloat = (kbSize.height)-(window.frame.height-lastScrollViewRect.maxY)
-                    var bottomScrollIndicatorInset = bottomInset - newKeyboardDistanceFromTextField
-
+                    let bottom: CGFloat = (kbSize.height-newKeyboardDistanceFromTextField)-(window.frame.height-lastScrollViewRect.maxY)
+                    
                     // Update the insets so that the scroll vew doesn't shift incorrectly when the offset is near the bottom of the scroll view.
-                    bottomInset = max(_startingContentInsets.bottom, bottomInset)
-                    bottomScrollIndicatorInset = max(_startingScrollIndicatorInsets.bottom, bottomScrollIndicatorInset)
-
+                    
+                    var bottomInset = max(_startingContentInsets.bottom, bottom)
+                    
                     #if swift(>=4.0)
                     if #available(iOS 11, *) {
                         bottomInset -= lastScrollView.safeAreaInsets.bottom
-                        bottomScrollIndicatorInset -= lastScrollView.safeAreaInsets.bottom
                     }
                     #endif
 
@@ -1295,20 +1284,20 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                         UIView.animate(withDuration: _animationDuration, delay: 0, options: _animationCurve.union(.beginFromCurrentState), animations: { () -> Void in
                             lastScrollView.contentInset = movedInsets
                             
-                            var newScrollIndicatorInset : UIEdgeInsets
+                            var newInset : UIEdgeInsets
                             
                             #if swift(>=5.1)
                             if #available(iOS 11.1, *) {
-                                newScrollIndicatorInset = lastScrollView.verticalScrollIndicatorInsets
+                                newInset = lastScrollView.verticalScrollIndicatorInsets
                             } else {
-                                newScrollIndicatorInset = lastScrollView.scrollIndicatorInsets
+                                newInset = lastScrollView.scrollIndicatorInsets
                             }
                             #else
-                            newScrollIndicatorInset = lastScrollView.scrollIndicatorInsets
+                            newInset = lastScrollView.scrollIndicatorInsets
                             #endif
 
-                            newScrollIndicatorInset.bottom = bottomScrollIndicatorInset
-                            lastScrollView.scrollIndicatorInsets = newScrollIndicatorInset
+                            newInset.bottom = movedInsets.bottom
+                            lastScrollView.scrollIndicatorInsets = newInset
                         })
                     }
                 }
