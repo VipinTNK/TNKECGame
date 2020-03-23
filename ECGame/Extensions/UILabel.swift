@@ -19,7 +19,7 @@ extension UILabel {
         self.backgroundColor = bgColor
     
     }
-    
+    /*
     func animation(typing value:String,duration: Double){
       let characters = value.map { $0 }
       var index = 0
@@ -32,7 +32,7 @@ extension UILabel {
               timer.invalidate()
           }
       })
-    }
+    } */
 
 
     func textWithAnimation(text:String,duration:CFTimeInterval){

@@ -1177,7 +1177,7 @@ extension GameViewController {
                         //Update notification button color
                        
                         for items in list {
-                            //print("=== \(items.results) ===")
+                            print("=== \(items.results) ===")
                             if items.results == 0 {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                                     UIView.animate(withDuration: 1.0) {

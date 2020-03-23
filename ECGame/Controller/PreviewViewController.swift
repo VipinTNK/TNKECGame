@@ -143,11 +143,8 @@ class PreviewViewController: UIViewController, LanguageDelegate, UITableViewDele
     func showNotifications() -> Void {
         if notifCounter < notificationModel?.data?.count ?? 0 {
             let list = self.notificationModel?.data
-            UIView.transition(with: self.notificationLbl,
-                              duration: 1.5,
-                              options: .transitionFlipFromLeft,
-                              animations: { [weak self] in
-                                self?.notificationLbl.text = list?[(self?.notifCounter)!].message
+            UIView.transition(with: self.notificationLbl,  duration: 1.5, options: .transitionFlipFromLeft, animations: {
+                [weak self] in self?.notificationLbl.text = list?[(self?.notifCounter)!].message
                 }, completion: nil)
             notifCounter = notifCounter + 1
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) { () in
@@ -270,7 +267,8 @@ extension PreviewViewController {
     }
     
     // API call for roadmap view
-      func getRoadmapDataFromServer(stockIDs : String) {
+    func getRoadmapDataFromServer(stockIDs : String) {
+        
           if NetworkManager.sharedInstance.isInternetAvailable(){
               let stateURL : String = UrlName.baseUrl + UrlName.roadmapListUrl
               let params = ["stockId" : "4,5,7"]  as [String : Any]

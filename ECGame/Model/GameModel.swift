@@ -11,9 +11,9 @@ import ObjectMapper
 
 class RoadmapModel: Mappable {
     
-    var code = 0
-    var status = false
-    var message = ""
+    var code : Int = 0
+    var status : Bool = false
+    var message : String = ""
     var data : [RoadmapDataModel]?
  
     required init?(map: Map) {
@@ -30,9 +30,9 @@ class RoadmapModel: Mappable {
     
 class RoadmapDataModel: Mappable {
     
-    var totalWinning = 0
-    var totalUsers = 0
-    var result = 0
+    var totalWinning : Int = 0
+    var totalUsers : Int = 0
+    var result : Int = 0
     var roadMap : [RoadmapStockTypeModel]?
     
     required init?(map: Map) {
@@ -49,9 +49,9 @@ class RoadmapDataModel: Mappable {
 
 class RoadmapStockTypeModel: Mappable {
 
-    var status = ""
-    var stockCategory = ""
-    var stockName = ""
+    var status : String = ""
+    var stockCategory : String = ""
+    var stockName : String = ""
     var stockData : [RoadmapDataObjectModel]?
     
     required init?(map: Map) {
@@ -68,14 +68,14 @@ class RoadmapStockTypeModel: Mappable {
 
 class RoadmapDataObjectModel: Mappable {
 
-    var id = 0
-    var DRdate = ""
-    var no1 = 0
-    var no2  = 0
-    var gameId = ""
-    var writetime = ""
-    var flag = ""
-    var PT = ""
+    var id : Int = 0
+    var DRdate : String = ""
+    var no1 : Int = 0
+    var no2 : Int = 0
+    var gameId : String = ""
+    var writetime : String = ""
+    var flag : String = ""
+    var PT : String = ""
     
     required init?(map: Map) {
         //
