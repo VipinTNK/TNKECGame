@@ -10,9 +10,9 @@ target 'ECGame' do
     pod 'IQKeyboardManagerSwift', '6.5.4'
     pod 'Toast-Swift', '~> 4.0.0'
     pod 'SwiftyJSON', '~> 4.0'  
-    pod 'Kingfisher'
+    pod 'Kingfisher', '4.9.0'
     pod 'Alamofire', '4.9.1'
-    pod "SimpleAnimation"    
+    pod 'SimpleAnimation'    
     pod 'ObjectMapper'
     pod 'DropDown', '2.3.4'
     pod 'AMPopTip'
@@ -25,9 +25,8 @@ target 'ECGame' do
 end
 
 pre_install do |installer|
-	installer.analysis_result.specifications.each do |s|
-        if s.name == 'SimpleAnimation' || s.name == 'DropDown'
-            s.swift_version = '5.0'
-        end
-    end
+  installer.analysis_result.specifications.each do |s|
+    s.swift_version = '4.2' unless s.swift_version
+  end
 end
+
