@@ -8,7 +8,6 @@ PODS:
   - IQKeyboardManagerSwift (6.5.4)
   - Kingfisher (5.13.0):
     - Kingfisher/Core (= 5.13.0)
-  - Kingfisher/Core (5.13.0)
   - MBProgressHUD (1.1.0)
   - ObjectMapper (3.5.1)
   - SimpleAnimation (0.4.2)
@@ -55,6 +54,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 9f9c39d2d809497eea8d65e917caf07623096a8f
+PODFILE CHECKSUM: 46e4288181604fc67d6327d4429e73e168bedba1
 
-COCOAPODS: 1.9.0.beta.2
+COCOAPODS: 1.9.1
